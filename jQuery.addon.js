@@ -8,6 +8,16 @@
 // @copyright    2011+, Philia
 // ==/UserScript==
 
+//  Simple way
+/*
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
+document.head.appendChild(script);
+*/
+
+//  Hard way
+/*
 function withjQuery(callback) {
     if (typeof(jQuery) == "undefined") {
         var script = document.createElement("script");
@@ -28,15 +38,15 @@ function withjQuery(callback) {
 withjQuery(function($) {
     console.log("jQuery addon is taking effect!");
 
-    /*
-     * This function is used to call different functions by location.href
-     * route("www.google.com", function() {
-     *     // process
-     * });
-     */
+     // This function is used to call different functions by location.href
+     // route("www.google.com", function() {
+     //     process here
+     // });
+
     function route(match, fn) {
         if (window.location.href.indexOf(match) != -1) {
             fn();
         }
     }
 });
+*/
