@@ -26,7 +26,7 @@ function withjQuery(callback) {
 }
 
 withjQuery(function($) {
-    console.log("jQuery addon taking effect!");
+    console.log("jQuery addon is taking effect!");
 
     /*
      * This function is used to call different functions by location.href
