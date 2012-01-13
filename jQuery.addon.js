@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name       jQuery addon
-// @namespace  http://philia.test.com/
-// @version    0.1
+// @name         jQuery addon
+// @namespace    http://philia.test.com/
+// @version      0.1
 // @description  add jQuery functions to current page
-// @include    *
-// @copyright  2011+, Philia
+// @include      *
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+// @copyright    2011+, Philia
 // ==/UserScript==
 
 function withjQuery(callback) {
