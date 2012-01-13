@@ -27,4 +27,16 @@ function withjQuery(callback) {
 
 withjQuery(function($) {
     console.log("jQuery addon taking effect!");
+
+    /*
+     * This function is used to call different functions by location.href
+     * route("www.google.com", function() {
+     *     // process
+     * });
+     */
+    function route(match, fn) {
+        if (window.location.href.indexOf(match) != -1) {
+            fn();
+        }
+    }
 });
