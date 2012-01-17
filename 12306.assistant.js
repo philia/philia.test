@@ -80,7 +80,7 @@ withjQuery(function($) {
         //  'Order ticket' link
         var queryurl = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=init";
         //  Check if user has already login, redirect to query url
-        if (parent && parnt.$) {
+        if (parent && parent.$) {
             //  This is 'Register' link right above, it means user has not successfully logined if exists
             var str = parent.$("#username_ a").attr("href");
             if (str && str.indexOf("sysuser/user_info") != -1) {
