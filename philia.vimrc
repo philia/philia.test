@@ -15,6 +15,7 @@ set expandtab
 set ignorecase
 set smartcase
 set incsearch
+set hlsearch
 set autoindent
 set cindent
 set wildmenu
