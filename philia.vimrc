@@ -23,5 +23,9 @@ set viminfo='100,f1
 let g:netrw_browse_split=3
 let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
