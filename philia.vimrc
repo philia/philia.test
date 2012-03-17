@@ -7,6 +7,7 @@ if has("gui")
     set columns=110
 endif
 
+set nocompatible
 set nu
 set nobackup
 set tabstop=4
@@ -20,6 +21,7 @@ set autoindent
 set cindent
 set wildmenu
 set viminfo='100,f1
+set background=dark
 
 let g:netrw_browse_split=3
 let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
