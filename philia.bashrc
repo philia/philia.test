@@ -4,9 +4,10 @@ export LS_COLORS="no=00:fi=00:di=01;30;44:ln=00;36:pi=40;33:so=00;35:bd=40;33;01
 alias ls="ls --color=auto"
 alias ll="ls -alF"
 alias grep="grep --color=auto"
+alias vim='vim -c "source ~fanh/bak/philia.vimrc"'
+
+set -o vi
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
-
-set -o vi
