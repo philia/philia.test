@@ -4,9 +4,13 @@
 // @version      0.1
 // @description  add jQuery functions to current page
 // @include      *
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @copyright    2011+, Philia
 // ==/UserScript==
+
+//  SIMPLEST way
+/*
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+*/
 
 //  Simple way
 /*
@@ -50,3 +54,5 @@ withjQuery(function($) {
     }
 });
 */
+
+GM_log("PD: $().jquery = " + $().jquery);
