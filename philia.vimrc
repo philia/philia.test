@@ -14,7 +14,7 @@ set autoindent
 set cindent
 set wildmenu
 set viminfo='100,f1
-set encoding=UTF-8
+" set encoding=UTF-8
 set background=dark
 
 let g:netrw_browse_split=3
