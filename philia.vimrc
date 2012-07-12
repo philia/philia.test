@@ -38,3 +38,5 @@ else
     hi IndentGuidesOdd ctermbg=lightgray
 endif
 
+call pathogen#infect()
+call pathogen#helptags()
