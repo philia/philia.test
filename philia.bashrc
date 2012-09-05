@@ -7,6 +7,9 @@ alias grep="grep --color=auto"
 
 set -o vi
 
+alias cdm="cd ~/mnt"
+alias cdt="cd ~/mnt/tmp"
+
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
