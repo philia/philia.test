@@ -9,6 +9,7 @@ set -o vi
 
 alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
+alias cdv="cd ~/mnt/var"
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
