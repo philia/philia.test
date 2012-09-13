@@ -17,6 +17,7 @@ set viminfo='100,f1
 " set encoding=UTF-8
 set background=dark
 set foldcolumn=3
+set laststatus=2
 
 let g:netrw_browse_split=3
 let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
@@ -38,5 +39,5 @@ else
     hi IndentGuidesOdd ctermbg=lightgray
 endif
 
-call pathogen#infect()
+call pathogen#infect('d:\work\var\vimfiles\bundle')
 call pathogen#helptags()
