@@ -36,8 +36,8 @@ if has("gui_running")
     set columns=110
 else
     let g:indent_guides_auto_colors = 1
-    "hi IndentGuidesOdd ctermbg=lightgray
-    "hi IndentGuidesEven ctermbg=darkgray
+    " hi IndentGuidesOdd ctermbg=lightgray
+    " hi IndentGuidesEven ctermbg=darkgray
 endif
 
 call pathogen#infect('d:\work\var\vimfiles\bundle')
