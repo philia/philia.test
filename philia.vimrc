@@ -20,6 +20,7 @@ set foldcolumn=3
 set laststatus=2
 
 let g:netrw_browse_split=3
+let g:netrw_sort_direction='reverse'
 let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 
 let g:indent_guides_enable_on_vim_startup = 1
