@@ -25,8 +25,6 @@ let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 let g:netrw_cygwin=0
 let g:netrw_silent=1
 let g:netrw_mousemaps=0
-let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
-let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
 
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
@@ -48,5 +46,10 @@ else
     " hi IndentGuidesEven ctermbg=darkgray
 endif
 
-call pathogen#infect('d:\work\var\vimfiles\bundle')
 call pathogen#helptags()
+
+" local configurations 
+call pathogen#infect('d:\work\var\vimfiles\bundle')
+let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
+let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
+
