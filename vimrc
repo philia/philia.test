@@ -48,8 +48,9 @@ endif
 
 call pathogen#helptags()
 
-" uncomment this if there is issue about "unable to open swap file for [No Name], recover impossible
-" set dir=$TEMP
+" fix issue about "unable to open swap file for [No Name], recover impossible
+" also this prevent .swp file from generating to current directory of netrw
+set dir=$TEMP
 
 " local configurations 
 call pathogen#infect('d:\work\var\vimfiles\bundle')
