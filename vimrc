@@ -48,6 +48,9 @@ endif
 
 call pathogen#helptags()
 
+" uncomment this if there is issue about "unable to open swap file for [No Name], recover impossible
+" set dir=$TEMP
+
 " local configurations 
 call pathogen#infect('d:\work\var\vimfiles\bundle')
 let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
