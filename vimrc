@@ -29,8 +29,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 
-let g:Powerline_symbols = 'fancy'
-
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
@@ -47,15 +45,18 @@ endif
 
 call pathogen#helptags()
 
-" fix issue about "unable to open swap file for [No Name], recover impossible
-" also this prevent .swp file from generating to current directory of netrw
-set dir=$TEMP
+"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'compatible'
 
 " Choose whether to enable or not
 " set encoding=UTF-8
+
+" fix issue about "unable to open swap file for [No Name], recover impossible
+" also this prevent .swp file from generating to current directory of netrw
+" set to /tmp on linux
+set dir=$TEMP
 
 " local config
 call pathogen#infect('d:\work\var\vimfiles\bundle')
 let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
 let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
-
