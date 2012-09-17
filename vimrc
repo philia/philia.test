@@ -24,6 +24,7 @@ let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 let g:netrw_cygwin=0
 let g:netrw_silent=1
 let g:netrw_mousemaps=0
+" let g:netrw_liststyle=3
 
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
