@@ -14,3 +14,5 @@ alias cdv="cd ~/mnt/var"
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
+
+cd ~/

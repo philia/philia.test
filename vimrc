@@ -14,7 +14,6 @@ set autoindent
 set cindent
 set wildmenu
 set viminfo='100,f1
-" set encoding=UTF-8
 set background=dark
 set foldcolumn=3
 set laststatus=2
@@ -52,7 +51,10 @@ call pathogen#helptags()
 " also this prevent .swp file from generating to current directory of netrw
 set dir=$TEMP
 
-" local configurations 
+" Choose whether to enable or not
+" set encoding=UTF-8
+
+" local config
 call pathogen#infect('d:\work\var\vimfiles\bundle')
 let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
 let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
