@@ -47,6 +47,7 @@ call pathogen#helptags()
 
 "let g:Powerline_symbols = 'fancy'
 let g:Powerline_symbols = 'compatible'
+let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
 " Choose whether to enable or not
 set encoding=UTF-8
