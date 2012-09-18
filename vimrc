@@ -49,12 +49,15 @@ call pathogen#helptags()
 let g:Powerline_symbols = 'compatible'
 
 " Choose whether to enable or not
-" set encoding=UTF-8
+set encoding=UTF-8
+set fillchars+=stl:\ ,stlnc:\
 
 " fix issue about "unable to open swap file for [No Name], recover impossible
 " also this prevent .swp file from generating to current directory of netrw
-" set to /tmp on linux
-set dir=$TEMP
+" for Windows
+" set dir=$TEMP
+" for Linux
+" set dir=/tmp
 
 " local config
 call pathogen#infect('d:\work\var\vimfiles\bundle')
