@@ -14,9 +14,8 @@ alias cdv="cd ~/mnt/var"
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
-# This part fails autocomplete in msys console if enabled
-#stty werase undef
-#bind '"\C-w": unix-filename-rubout'
-bind '"\C-b": unix-filename-rubout'
+# This part fails autocomplete in msys console if enabled, check profile to see how this is fixed
+stty werase undef
+bind '"\C-w": unix-filename-rubout'
 
 cd ~/
