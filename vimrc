@@ -1,4 +1,5 @@
 colorscheme desert
+set guifont=Consolas
 
 set nocompatible
 set nu
