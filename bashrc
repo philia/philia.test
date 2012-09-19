@@ -14,8 +14,9 @@ alias cdv="cd ~/mnt/var"
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
-# This part fails autocomplete in msys console if enabled, check profile to see how this is fixed
-stty werase undef
+# backward delete a word affects two files:
+# /etc/profile (msys) or ~/.bash_profile (linux)
+# ~/.inputrc (msys) or ~/.bashrc (linux)
 bind '"\C-w": unix-filename-rubout'
 
 cd ~/
