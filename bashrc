@@ -14,10 +14,8 @@ alias cdv="cd ~/mnt/var"
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
-# backward delete a word affects two files:
-# /etc/profile (msys) or ~/.bash_profile (linux)
-# ~/.inputrc (msys) or ~/.bashrc (linux)
-# uncomment this line may work, add to ~/.bash_profile always works because it explictly source .bashrc by ". ~/.bashrc"
+# \C-w is mapped by stty by default
+# bind 'set bind-tty-special-chars off'
 # stty werase undef
 bind '"\C-w": unix-filename-rubout'
 
