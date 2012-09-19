@@ -17,6 +17,8 @@ bind '"\C-i": complete'
 # backward delete a word affects two files:
 # /etc/profile (msys) or ~/.bash_profile (linux)
 # ~/.inputrc (msys) or ~/.bashrc (linux)
+# uncomment this line may work, add to ~/.bash_profile always works because it explictly source .bashrc by ". ~/.bashrc"
+# stty werase undef
 bind '"\C-w": unix-filename-rubout'
 
 cd ~/
