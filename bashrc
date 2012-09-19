@@ -10,13 +10,15 @@ set -o vi
 alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
 alias cdv="cd ~/mnt/var"
+alias vi="vim"
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
 # \C-w is mapped by stty by default
+# the followed three lines may not work in old system
 # bind 'set bind-tty-special-chars off'
 # stty werase undef
-bind '"\C-w": unix-filename-rubout'
+# bind '"\C-w": unix-filename-rubout'
 
 cd ~/

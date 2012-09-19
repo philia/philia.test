@@ -18,7 +18,5 @@ export P4PORT=""
 export P4CLIENT=""
 export P4USER=""
 
-# This line fixes C-w rebind
-# add the next line to ~/.bash_profile if linux
-# . ~/.bashrc
-stty werase undef
+# This line fixes C-w rebind in msys
+# stty werase undef
