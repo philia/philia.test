@@ -17,6 +17,3 @@ set -o vi
 export P4PORT=""
 export P4CLIENT=""
 export P4USER=""
-
-# This line fixes C-w rebind in msys
-# stty werase undef
