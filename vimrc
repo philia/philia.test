@@ -69,6 +69,6 @@ set fillchars+=stl:\ ,stlnc:\
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
 " call pathogen#helptags()
 " where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
-let g:netrw_home='d:\dev\tmp'
+" let g:netrw_home='d:\dev\tmp'
 let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
 let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
