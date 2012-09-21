@@ -42,9 +42,9 @@ else
     " hi IndentGuidesEven ctermbg=darkgray
 endif
 
-call pathogen#helptags()
 
-"let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_enabled = 0
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
@@ -64,11 +64,11 @@ set fillchars+=stl:\ ,stlnc:\
 " for Linux
 " set dir=/tmp
 
-" cd c:\work
-
 " local config
-call pathogen#infect('d:\work\var\vimfiles\bundle')
-" where bookmarks and history are saved (as .netrwbook and .netrwhist).
-" let g:netrw_home='d:\dev\tmp'
+" cd d:\work
+" call pathogen#infect('d:\work\var\vimfiles\bundle')
+" call pathogen#helptags()
+" where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
+let g:netrw_home='d:\dev\tmp'
 let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
 let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
