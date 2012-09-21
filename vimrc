@@ -51,7 +51,7 @@ let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 " automatically opens netrw browser
-autocmd VimEnter * Ex
+" autocmd VimEnter * Ex
 
 " Choose whether to enable or not
 set encoding=UTF-8
