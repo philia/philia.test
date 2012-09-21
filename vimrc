@@ -31,9 +31,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-
 " identifies gvim
 if has("gui_running")
     winpos 840 0
@@ -51,6 +48,11 @@ call pathogen#helptags()
 let g:Powerline_symbols = 'compatible'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+" automatically opens netrw browser
+autocmd VimEnter * Ex
+
 " Choose whether to enable or not
 set encoding=UTF-8
 set fillchars+=stl:\ ,stlnc:\
@@ -61,6 +63,8 @@ set fillchars+=stl:\ ,stlnc:\
 " set dir=$TEMP
 " for Linux
 " set dir=/tmp
+
+" cd c:\work
 
 " local config
 call pathogen#infect('d:\work\var\vimfiles\bundle')
