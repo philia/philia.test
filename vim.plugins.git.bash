@@ -5,5 +5,9 @@ git clone git@github.com:edsono/vim-matchit
 git clone git@github.com:Lokaltog/vim-powerline
 
 #install
-#mkdir -p ~/.vim/autoload ~/.vim/bundle;
-#curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+#copy pathogen.vim to $VIMRUNTIME/autoload/
+#git clone to $PATH_TO_VIMFILES/bundle/
+#use the followed command to install vimball package:
+# :e name.vba
+# :!mkdir $PATH_TO_VIMFILES/bundle/name
+# :UseVimball $PATH_TO_VIMFILES/bundle/name
