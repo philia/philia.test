@@ -17,7 +17,6 @@ set wildmenu
 set viminfo='100,f1
 set background=dark
 set foldcolumn=3
-" set foldmethod=syntax
 set laststatus=2
 
 let g:netrw_browse_split=3
