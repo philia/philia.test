@@ -23,6 +23,7 @@ set laststatus=2
 set fillchars+=stl:\ ,stlnc:\
 " show invisible chars like TAB
 " set list
+" set nolist
 
 let g:netrw_browse_split=3
 let g:netrw_sort_direction='reverse'
