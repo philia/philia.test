@@ -57,6 +57,8 @@ au BufWinEnter * silent! loadview
 " TODO: local config
 " Choose whether to enable or not
 set encoding=UTF-8
+" for linux to display colors for powerline
+set t_Co=256
 
 " fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
 " set dir=$TEMP for windows or set dir=/tmp for Linux
