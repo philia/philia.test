@@ -16,13 +16,13 @@ set background=dark
 set foldcolumn=3
 set laststatus=2
 
-" set tabstop=4
-" set shiftwidth=4
-" set expandtab
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 set fillchars+=stl:\ ,stlnc:\
 " show invisible chars like TAB
-" set list
+set list
 " set nolist
 
 let g:netrw_browse_split=3
