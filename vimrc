@@ -22,7 +22,7 @@ set expandtab
 
 set fillchars+=stl:\ ,stlnc:\
 " show invisible chars like TAB
-set list
+" set list
 " set nolist
 
 let g:netrw_browse_split=3
