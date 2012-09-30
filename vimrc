@@ -1,4 +1,10 @@
 colorscheme desert
+syntax on
+
+if has("autocmd")
+    filetype plugin indent on
+endif
+
 set guifont=Consolas
 
 set nocompatible
