@@ -18,6 +18,7 @@ set viminfo='100,f1
 set background=dark
 set foldcolumn=3
 set laststatus=2
+set autochdir
 
 let g:netrw_browse_split=3
 let g:netrw_sort_direction='reverse'
@@ -25,6 +26,7 @@ let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 let g:netrw_cygwin=0
 let g:netrw_silent=1
 let g:netrw_mousemaps=0
+let g:netrw_keepdir=0
 " let g:netrw_liststyle=3
 
 let g:indent_guides_enable_on_vim_startup = 1
