@@ -67,7 +67,7 @@ au BufWinEnter * silent! loadview
 
 " TODO: local config
 " Choose whether to enable or not
-set encoding=UTF-8
+" set encoding=UTF-8
 " for linux to display colors for powerline
 " set t_Co=256
 
