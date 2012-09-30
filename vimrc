@@ -4,9 +4,6 @@ set guifont=Consolas
 set nocompatible
 set nu
 set nobackup
-set tabstop=4
-set shiftwidth=4
-set expandtab
 set ignorecase
 set smartcase
 set incsearch
@@ -19,6 +16,15 @@ set background=dark
 set foldcolumn=3
 set laststatus=2
 set autochdir
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set fillchars+=stl:\ ,stlnc:\
+" show invisible chars like TAB
+" set list
+" set nolist
 
 let g:netrw_browse_split=3
 let g:netrw_sort_direction='reverse'
@@ -44,7 +50,6 @@ else
     " hi IndentGuidesEven ctermbg=darkgray
 endif
 
-set fillchars+=stl:\ ,stlnc:\
 " let g:Powerline_symbols = 'fancy'
 " let g:Powerline_cache_enabled = 0
 let g:Powerline_symbols = 'compatible'
