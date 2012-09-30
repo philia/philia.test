@@ -74,7 +74,7 @@ au BufWinEnter * silent! loadview
 " TODO: local config
 " Choose whether to enable or not
 " set encoding=UTF-8
-" for linux to display colors for powerline
+" for linux to display colors for powerline, this also affect indent-guides under msys
 " set t_Co=256
 
 " fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
