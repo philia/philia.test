@@ -29,7 +29,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set fillchars+=stl:\ ,stlnc:\
 " show invisible chars like TAB
 " set list
 " set nolist
@@ -79,11 +78,17 @@ au BufWinEnter * silent! loadview
 
 " fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
 " set dir=$TEMP for windows or set dir=/tmp for Linux
+if has("win32")
+    " set dir=$TEMP
+else
+    " set dir=$TMP
+endif
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
 " call pathogen#helptags()
 " where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
 " let g:netrw_home='d:\dev\tmp'
+
 " let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
 " let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
