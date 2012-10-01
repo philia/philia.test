@@ -60,6 +60,7 @@ endif
 " let g:Powerline_symbols = 'fancy'
 " let g:Powerline_cache_enabled = 0
 let g:Powerline_symbols = 'compatible'
+let g:Powerline_stl_path_style = 'full'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
 au BufWinLeave * silent! mkview
