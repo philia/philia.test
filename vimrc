@@ -69,6 +69,9 @@ au BufWinEnter * silent! loadview
 " this will help if 'set autochdir' doesn't work sometimes
 " autocmd BufEnter * silent! lcd %:p:h
 
+" \T to open taglist
+silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
+
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
 " source d:\dev\var\vimfiles\autoload\pathogen.vim
