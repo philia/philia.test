@@ -11,6 +11,7 @@ alias cdm="cd ~/work/mnt"
 alias cdt="cd ~/work/tmp"
 alias cdv="cd ~/work/var"
 alias exp="explorer ."
+alias vi="vim"
 
 set -o vi
 
