@@ -33,7 +33,7 @@ endif
 " set nolist
 
 " fix issue about backspace doesn't work in insert mode
-" set backspace=2
+set backspace=2
 
 let g:netrw_browse_split=3
 let g:netrw_sort_direction='reverse'
