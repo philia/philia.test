@@ -38,7 +38,8 @@ set backspace=2
 
 let g:netrw_browse_split=3
 let g:netrw_sort_direction='reverse'
-let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
+" let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
+let g:netrw_bufsettings='noma nomod relativenumber nobl nowrap ro'
 let g:netrw_cygwin=0
 let g:netrw_silent=1
 let g:netrw_mousemaps=0
