@@ -76,8 +76,10 @@ au BufWinEnter * silent! loadview
 
 " \T to open taglist
 silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
-" \E to open a new tab
-silent! nnoremap <unique> <silent> <Leader>E :tabnew<CR>
+" \E to open :Ex (netrw browse)
+silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
+" \e to open a new tab
+silent! nnoremap <unique> <silent> <Leader>e :tabnew<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
