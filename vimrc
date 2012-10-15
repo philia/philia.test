@@ -7,7 +7,8 @@ endif
 
 set nocompatible
 set guifont=Consolas
-set number
+" set number
+set relativenumber
 set nobackup
 set ignorecase
 set smartcase
