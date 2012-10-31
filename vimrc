@@ -80,6 +80,8 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 " \e to open a new tab
 silent! nnoremap <unique> <silent> <Leader>e :tabnew<CR>
+" \n to call :noh
+silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
