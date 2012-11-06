@@ -82,6 +82,8 @@ silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 silent! nnoremap <unique> <silent> <Leader>e :tabnew<CR>
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
+" \t.. to open commant-T at one directory above
+silent! nnoremap <unique> <silent> <Leader>t.. :CommandT ..<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
