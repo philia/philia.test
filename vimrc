@@ -84,6 +84,8 @@ silent! nnoremap <unique> <silent> <Leader>e :tabnew<CR>
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 " \t.. to open commant-T at one directory above
 silent! nnoremap <unique> <silent> <Leader>t.. :CommandT ..<CR>
+" \t0 to move current tab as first one
+silent! nnoremap <unique> <silent> <Leader>t0 :tabm0<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
