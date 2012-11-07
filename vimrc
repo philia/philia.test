@@ -90,6 +90,7 @@ silent! nnoremap <unique> <silent> <Leader>t0 :tabm0<CR>
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
 " source d:\dev\var\vimfiles\autoload\pathogen.vim
+" source d:\dev\var\github\philia.test\vimrc
 " Choose whether to enable or not
 " set encoding=UTF-8
 " for linux to display colors for powerline, this also affect indent-guides under msys
