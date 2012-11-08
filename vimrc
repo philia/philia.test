@@ -78,8 +78,8 @@ au BufWinEnter * silent! loadview
 silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 " \E to open :Ex (netrw browse)
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
-" \e to open a new tab
-silent! nnoremap <unique> <silent> <Leader>e :tabnew<CR>
+" \e to open a new tab as the first one
+silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 " \t.. to open commant-T at one directory above
