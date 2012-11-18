@@ -116,4 +116,4 @@ endif
 " let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
 " usage:
 " :e scp://root@ip//path/filename to open file
-" :e scp://root@ip//path/ to open path (remember the last / is very important for open remote directory
+" :e scp://root@ip//path/ to open path (remember the last / is very important for open remote directory)
