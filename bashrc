@@ -7,6 +7,7 @@ export LS_COLORS="no=00:fi=00:di=01;30;44:ln=00;36:pi=40;33:so=00;35:bd=40;33;01
 alias ls="ls --color=auto --show-control-chars"
 alias ll="ls -alF --show-control-chars"
 alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
 
 set -o vi
 
