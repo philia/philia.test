@@ -29,6 +29,8 @@ if exists("+autochdir")
     set autochdir
 endif
 
+set guitablabel="%r%m%t"
+
 " show invisible chars like TAB
 " set list
 " set nolist
