@@ -53,8 +53,10 @@ let g:indent_guides_guide_size = 1
 " identifies gvim
 if has("gui_running")
     winpos 840 0
-    set lines=62
-    set columns=110
+    " set lines=62
+    " set columns=110
+    " maximize the window
+    au GUIEnter * simalt ~X
     " hide menu bar
     set guioptions -=m
     " hide toolbar
