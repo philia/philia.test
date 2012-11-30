@@ -53,12 +53,14 @@ let g:indent_guides_guide_size = 1
 " identifies gvim
 if has("gui_running")
     winpos 840 0
-    set lines=80
+    set lines=62
     set columns=110
     " hide menu bar
     set guioptions -=m
     " hide toolbar
     set guioptions -=T
+    " hide right scrollbar
+    set guioptions -=r
 else
     let g:indent_guides_auto_colors = 1
     " hi IndentGuidesOdd ctermbg=lightgray
