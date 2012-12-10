@@ -100,6 +100,8 @@ silent! nnoremap <unique> <silent> <Leader>t.. :CommandT ..<CR>
 silent! nnoremap <unique> <silent> <Leader>t0 :tabm0<CR>
 " \t1 to move current tab as second one
 silent! nnoremap <unique> <silent> <Leader>t1 :tabm1<CR>
+" \t$ to move current tab to the last one
+silent! nnoremap <unique> <silent> <Leader>t$ :tabm<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
