@@ -6,6 +6,8 @@ git clone git@github.com:Lokaltog/vim-powerline
 git clone git@github.com:thisivan/vim-taglist
 git clone git@github.com:tpope/vim-surround
 
+wget http://s3.wincent.com/command-t/releases/command-t-1.4.vba
+
 #install
 #copy pathogen.vim to $VIMRUNTIME/autoload/
 #git clone to $PATH_TO_VIMFILES/bundle/
