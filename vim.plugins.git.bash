@@ -1,10 +1,11 @@
 #!/bin/bash
-git clone git@github.com:tpope/vim-pathogen
-git clone git@github.com:nathanaelkane/vim-indent-guides
-git clone git@github.com:edsono/vim-matchit
-git clone git@github.com:Lokaltog/vim-powerline
-git clone git@github.com:thisivan/vim-taglist
-git clone git@github.com:tpope/vim-surround
+git clone git@github.com:tpope/vim-pathogen.git
+git clone git@github.com:nathanaelkane/vim-indent-guides.git
+git clone git@github.com:edsono/vim-matchit.git
+git clone git@github.com:Lokaltog/vim-powerline.git
+git clone git@github.com:thisivan/vim-taglist.git
+git clone git@github.com:tpope/vim-surround.git
+git clone git@github.com:kien/ctrlp.vim.git
 
 wget http://s3.wincent.com/command-t/releases/command-t-1.4.vba
 
