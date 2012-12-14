@@ -77,6 +77,8 @@ let g:Powerline_symbols = 'compatible'
 let g:Powerline_stl_path_style = 'full'
 let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
+let g:ctrlp_clear_cache_on_exit = 0
+
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 " automatically opens netrw browser
