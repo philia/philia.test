@@ -100,6 +100,8 @@ silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 silent! nnoremap <unique> <silent> <Leader>t.. :CommandT ..<CR>
 " \c to open CtrlP
 silent! nnoremap <unique> <silent> <Leader>c :CtrlP<CR>
+" \c.. to open CtrlP at one directory above
+silent! nnoremap <unique> <silent> <Leader>c.. :CtrlP ..<CR>
 " \t0 to move current tab as first one
 silent! nnoremap <unique> <silent> <Leader>t0 :tabm0<CR>
 " \t1 to move current tab as second one
