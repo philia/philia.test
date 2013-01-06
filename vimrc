@@ -92,8 +92,8 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 " \e to open a new tab as the first one
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
-" \ee to open a new tab as the first one, then open netrw
-silent! nnoremap <unique> <silent> <Leader>ee :0tabnew .<CR>
+" \Ee to open a new tab as the first one, then open netrw
+silent! nnoremap <unique> <silent> <Leader>Ee :0tabnew .<CR>
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 " \ct.. to open commant-T at one directory above
