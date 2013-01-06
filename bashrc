@@ -15,7 +15,7 @@ alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
 alias cdv="cd ~/mnt/var"
 alias vi="vim"
-#alias tmux="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
+#alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
