@@ -92,8 +92,8 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 " \e to open a new tab as the first one
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
-" \Ee to open a new tab as the first one, then open netrw
-silent! nnoremap <unique> <silent> <Leader>Ee :0tabnew .<CR>
+" \fe to open a new tab as the first one, then open netrw
+silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 " \ct.. to open commant-T at one directory above
@@ -102,12 +102,12 @@ silent! nnoremap <unique> <silent> <Leader>ct.. :CommandT ..<CR>
 silent! nnoremap <unique> <silent> <Leader>p :CtrlP<CR>
 " \cp.. to open CtrlP at one directory above
 silent! nnoremap <unique> <silent> <Leader>cp.. :CtrlP ..<CR>
-" \t0 to move current tab as first one
-silent! nnoremap <unique> <silent> <Leader>t0 :tabm0<CR>
-" \t1 to move current tab as second one
-silent! nnoremap <unique> <silent> <Leader>t1 :tabm1<CR>
-" \t$ to move current tab to the last one
-silent! nnoremap <unique> <silent> <Leader>t$ :tabm<CR>
+" \m0 to move current tab as first one
+silent! nnoremap <unique> <silent> <Leader>m0 :tabm0<CR>
+" \m1 to move current tab as second one
+silent! nnoremap <unique> <silent> <Leader>m1 :tabm1<CR>
+" \m$ to move current tab to the last one
+silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
