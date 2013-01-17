@@ -94,6 +94,8 @@ silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
 " \fe to open a new tab as the first one, then open netrw
 silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
+" \o to close all tabs except the current
+silent! nnoremap <unique> <silent> <Leader>o :tabo<CR>
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 " \ct.. to open commant-T at one directory above
