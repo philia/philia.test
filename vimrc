@@ -124,6 +124,8 @@ silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 " set dir=$TEMP for windows or set dir=/tmp for Linux
 if has("win32")
     " set dir=$TEMP
+    " set shell=D:/MinGW/msys/1.0/bin/bash.exe
+    " set shellcmdflag=--login\ -c
 else
     " set dir=$TMP
 endif
