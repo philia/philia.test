@@ -86,30 +86,41 @@ au BufWinEnter * silent! loadview
 " this will help if 'set autochdir' doesn't work sometimes
 " autocmd BufEnter * silent! lcd %:p:h
 
-" \T to open taglist
-silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
-" \E to open :Ex (netrw browse)
-silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
+" Tab management
 " \e to open a new tab as the first one
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
-" \fe to open a new tab as the first one, then open netrw
-silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
 " \o to close all tabs except the current
 silent! nnoremap <unique> <silent> <Leader>o :tabo<CR>
-" \n to call :noh
-silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
-" \ct.. to open commant-T at one directory above
-silent! nnoremap <unique> <silent> <Leader>ct.. :CommandT ..<CR>
-" \p to open CtrlP
-silent! nnoremap <unique> <silent> <Leader>p :CtrlP<CR>
-" \cp.. to open CtrlP at one directory above
-silent! nnoremap <unique> <silent> <Leader>cp.. :CtrlP ..<CR>
 " \m0 to move current tab as first one
 silent! nnoremap <unique> <silent> <Leader>m0 :tabm0<CR>
 " \m1 to move current tab as second one
 silent! nnoremap <unique> <silent> <Leader>m1 :tabm1<CR>
 " \m$ to move current tab to the last one
 silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
+
+" Commands
+" \n to call :noh
+silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
+" \sb to show buffers
+silent! nnoremap <unique> <silent> <Leader>sb :buffers<CR>
+
+" Plugins
+" \fe to open a new tab as the first one, then open netrw
+silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
+
+" \T to open taglist
+silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
+" \E to open :Ex (netrw browse)
+silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
+
+" \ct.. to open commant-T at one directory above
+silent! nnoremap <unique> <silent> <Leader>ct.. :CommandT ..<CR>
+
+" \p to open CtrlP
+silent! nnoremap <unique> <silent> <Leader>p :CtrlP<CR>
+" \cp.. to open CtrlP at one directory above
+silent! nnoremap <unique> <silent> <Leader>cp.. :CtrlP ..<CR>
+
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
