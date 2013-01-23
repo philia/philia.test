@@ -101,8 +101,6 @@ silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 " Commands
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
-" \sb to show buffers
-silent! nnoremap <unique> <silent> <Leader>sb :buffers<CR>
 
 " Plugins
 " \fe to open a new tab as the first one, then open netrw
