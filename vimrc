@@ -111,14 +111,16 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 " \E to open :Ex (netrw browse)
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 
-" \ct.. to open commant-T at one directory above
-silent! nnoremap <unique> <silent> <Leader>ct.. :CommandT ..<CR>
+" \ct to open commant-T using input path
+silent! nnoremap <unique> <Leader>ct :CommandT 
 
-" \p to open CtrlP
-silent! nnoremap <unique> <silent> <Leader>p :CtrlP<CR>
-" \cp.. to open CtrlP at one directory above
-silent! nnoremap <unique> <silent> <Leader>cp.. :CtrlP ..<CR>
+" \cp to open CtrlP using input path
+silent! nnoremap <unique> <Leader>cp :CtrlP 
 
+" \cq*   ConqueTerm series: v: vertical split, s: horizontal split, t: tab
+silent! nnoremap <unique> <Leader>cqv :ConqueTermVSplit 
+silent! nnoremap <unique> <Leader>cqs :ConqueTermSplit 
+silent! nnoremap <unique> <Leader>cqt :ConqueTermTab 
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
