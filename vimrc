@@ -114,12 +114,14 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 
 " \ct to open commant-T using input path
-silent! nnoremap <unique> <Leader>ct :CommandT 
+silent! nnoremap <unique> <Leader>ct :CommandT<Space>
 
 " \cpb to open CtrlP using buffer
 silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
 " \cpm to open CtrlP using MRU file mode
 silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
+" \cpc to open customized path
+silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
 " \cq*   ConqueTerm series: v: vertical split, s: horizontal split, t: tab
 silent! nnoremap <unique> <Leader>cqv :ConqueTermVSplit 
