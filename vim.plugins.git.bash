@@ -7,6 +7,7 @@ git clone git@github.com:Lokaltog/vim-easymotion.git
 git clone git@github.com:thisivan/vim-taglist.git
 git clone git@github.com:tpope/vim-surround.git
 git clone git@github.com:kien/ctrlp.vim.git
+git clone git@github.com:sjbach/lusty.git
 
 wget http://s3.wincent.com/command-t/releases/command-t-1.4.vba
 
