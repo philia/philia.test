@@ -40,7 +40,8 @@ set guitablabel="%r%m%t"
 " fix issue about backspace doesn't work in insert mode
 set backspace=2
 
-let g:netrw_browse_split=3
+"let g:netrw_browse_split=3 " open file in new tab
+let g:netrw_browse_split=0 " re-using the same window
 let g:netrw_sort_direction='reverse'
 " let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 let g:netrw_bufsettings='noma nomod relativenumber nobl nowrap ro'
