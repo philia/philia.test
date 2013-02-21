@@ -104,6 +104,10 @@ silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 " Commands
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
+" \fdi to fold by indent
+silent! nnoremap <unique> <silent> <Leader>fdi :set foldmethod=indent<CR>
+" \fdm to fold by manual
+silent! nnoremap <unique> <silent> <Leader>fdm :set foldmethod=manual<CR>
 
 " Plugins
 " \fe to open a new tab as the first one, then open netrw
