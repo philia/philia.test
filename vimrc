@@ -114,8 +114,8 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 " \E to open :Ex (netrw browse)
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 
-" \ct to open commant-T using input path
-silent! nnoremap <unique> <Leader>ct :CommandT<Space>
+" \ctc to open commant-T using input path
+silent! nnoremap <unique> <Leader>ctc :CommandT<Space>
 
 " \cpb to open CtrlP using buffer
 silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
