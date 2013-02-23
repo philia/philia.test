@@ -40,7 +40,8 @@ set guitablabel="%r%m%t"
 " fix issue about backspace doesn't work in insert mode
 set backspace=2
 
-let g:netrw_browse_split=3
+"let g:netrw_browse_split=3 " open file in new tab
+let g:netrw_browse_split=0 " re-using the same window
 let g:netrw_sort_direction='reverse'
 " let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
 let g:netrw_bufsettings='noma nomod relativenumber nobl nowrap ro'
@@ -103,6 +104,10 @@ silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 " Commands
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
+" \fdi to fold by indent
+silent! nnoremap <unique> <silent> <Leader>fdi :set foldmethod=indent<CR>
+" \fdm to fold by manual
+silent! nnoremap <unique> <silent> <Leader>fdm :set foldmethod=manual<CR>
 
 " Plugins
 " \fe to open a new tab as the first one, then open netrw
@@ -113,8 +118,8 @@ silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 " \E to open :Ex (netrw browse)
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 
-" \ct to open commant-T using input path
-silent! nnoremap <unique> <Leader>ct :CommandT<Space>
+" \ctc to open commant-T using input path
+silent! nnoremap <unique> <Leader>ctc :CommandT<Space>
 
 " \cpb to open CtrlP using buffer
 silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
