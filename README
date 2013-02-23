@@ -2,3 +2,4 @@ Test git commit
 Test if it asks for username and password at each push
 Turns out we should use "git clone git@github.com:username/project.git" instead of "git clone https://github.com/username/project.git"
 to test new account
+test update
