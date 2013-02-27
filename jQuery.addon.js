@@ -55,4 +55,20 @@ withjQuery(function($) {
 });
 */
 
+/*
+//  Ajax call
+
+var name_src = "a,b,c,d";
+var a_names = name_src.split(",");
+for (var i = 0; i < a_names.length; i++) {
+    var a_url = "http://hostname/pagename.php?param=" + a_names[i];
+    $.ajax({
+        url: a_url,
+        type: 'GET',
+    }).done(function(data) {
+        console.log(this.url + ":" + data);
+    });
+}
+*/
+
 GM_log("PD: $().jquery = " + $().jquery);
