@@ -8,6 +8,8 @@ git clone git@github.com:thisivan/vim-taglist.git
 git clone git@github.com:tpope/vim-surround.git
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:sjbach/lusty.git
+git clone git@github.com:Shougo/neosnippet.git
+git clone git@github.com:Shougo/neocomplcache.git
 
 wget http://s3.wincent.com/command-t/releases/command-t-1.4.vba
 
