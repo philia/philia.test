@@ -7,7 +7,7 @@ git clone git@github.com:Lokaltog/vim-easymotion.git
 git clone git@github.com:thisivan/vim-taglist.git
 git clone git@github.com:tpope/vim-surround.git
 git clone git@github.com:kien/ctrlp.vim.git
-git clone git@github.com:sjbach/lusty.git
+#git clone git@github.com:sjbach/lusty.git
 git clone git@github.com:Shougo/neosnippet.git
 git clone git@github.com:Shougo/neocomplcache.git
 
