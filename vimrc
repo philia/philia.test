@@ -134,9 +134,6 @@ silent! nnoremap <unique> <Leader>cqs :ConqueTermSplit
 silent! nnoremap <unique> <Leader>cqt :ConqueTermTab 
 
 " neocomplcache configuration
-let g:neocomplcache_enable_at_startup=1
-" Disable AutoComplPop. Comment out this line if AutoComplPop is not installed.
-" let g:acp_enableAtStartup = 0
 " Launches neocomplcache automatically on vim startup.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -169,6 +166,9 @@ smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
@@ -182,6 +182,13 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " Enable omni completion. Not required if they are already set elsewhere in .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
