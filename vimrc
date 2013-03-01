@@ -183,12 +183,6 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
 
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
 " Enable omni completion. Not required if they are already set elsewhere in .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
