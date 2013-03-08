@@ -40,6 +40,9 @@ set guitablabel="%r%m%t"
 " fix issue about backspace doesn't work in insert mode
 set backspace=2
 
+" diable preview window (annoying 'Scratch')
+set completeopt-=preview
+
 "let g:netrw_browse_split=3 " open file in new tab
 "let g:netrw_browse_split=0 " re-using the same window
 let g:netrw_sort_direction='reverse'
