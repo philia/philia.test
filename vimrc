@@ -58,6 +58,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 
+let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeDirArrows = 1
+
 " identifies gvim
 if has("gui_running")
     winpos 840 0
@@ -120,6 +123,8 @@ silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
 silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
 " \E to open :Ex (netrw browse)
 silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
+" \N to open :NerdTree
+silent! nnoremap <unique> <silent> <Leader>N :NERDTree<CR>
 
 " \ctc to open commant-T using input path
 silent! nnoremap <unique> <Leader>ctc :CommandT<Space>
