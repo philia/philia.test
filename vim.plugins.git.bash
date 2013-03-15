@@ -11,6 +11,7 @@ git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:Shougo/neosnippet.git
 git clone git@github.com:Shougo/neocomplcache.git
 git clone git@github.com:scrooloose/nerdtree.git
+git clone git@github.com:godlygeek/tabular
 
 wget http://s3.wincent.com/command-t/releases/command-t-1.4.vba
 
