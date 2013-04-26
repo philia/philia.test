@@ -224,8 +224,13 @@ au BufWinEnter * silent! loadview
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
+" for Windows
 " source d:\dev\var\vimfiles\autoload\pathogen.vim
 " source d:\dev\var\github\philia.test\vimrc
+" for Linux
+" source ~/dev/var/vimfiles/autoload/pathogen.vim
+" source ~/dev/var/github/philia.test/vimrc
+
 " Choose whether to enable or not
 " set encoding=UTF-8
 " for linux to display colors for powerline, this also affect indent-guides under msys
@@ -246,6 +251,7 @@ let &viewdir=expand(tempdir)
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
+" call pathogen#infect('~/dev/var/vimfiles/bundle')
 " call pathogen#helptags()
 " where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
 " let g:netrw_home='d:\dev\tmp'
