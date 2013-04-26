@@ -1,3 +1,4 @@
+" Global configuration
 colorscheme desert
 syntax on
 
@@ -45,6 +46,7 @@ set backspace=2
 " disable preview window (annoying 'Scratch')
 set completeopt-=preview
 
+" Variables
 "let g:netrw_browse_split=3 " open file in new tab
 "let g:netrw_browse_split=0 " re-using the same window
 let g:netrw_sort_direction='reverse'
@@ -91,13 +93,7 @@ let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
 let g:ctrlp_clear_cache_on_exit = 0
 
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-" automatically opens netrw browser
-" autocmd VimEnter * Ex
-" this will help if 'set autochdir' doesn't work sometimes
-" autocmd BufEnter * silent! lcd %:p:h
-
+" Key bindings
 " Tab management
 " \e to open a new tab as the first one
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
@@ -218,6 +214,13 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
+" Startup commands
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+" automatically opens netrw browser
+" autocmd VimEnter * Ex
+" this will help if 'set autochdir' doesn't work sometimes
+" autocmd BufEnter * silent! lcd %:p:h
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
@@ -231,12 +234,15 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
 " set dir=$TEMP for windows or set dir=/tmp for Linux
 if has("win32")
-    " set dir=$TEMP
     " set shell=D:/MinGW/msys/1.0/bin/bash.exe
     " set shellcmdflag=--login\ -c
+    let tempdir=$TEMP
 else
-    " set dir=$TMP
+    let tempdir=$TMP
 endif
+
+set dir=tempdir
+let &viewdir=expand(tempdir)
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
