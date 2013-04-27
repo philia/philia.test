@@ -246,8 +246,10 @@ else
     let tempdir=$TMP
 endif
 
-set dir=tempdir
 let &viewdir=expand(tempdir)
+set dir=tempdir
+" fix issues on win8
+" set dir=$TEMP
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
