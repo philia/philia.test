@@ -237,19 +237,16 @@ au BufWinEnter * silent! loadview
 " set t_Co=256
 
 " fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
-" set dir=$TEMP for windows or set dir=/tmp for Linux
 if has("win32")
     " set shell=D:/MinGW/msys/1.0/bin/bash.exe
     " set shellcmdflag=--login\ -c
-    let tempdir=$TEMP
 else
-    let tempdir=$TMP
 endif
 
-let &viewdir=expand(tempdir)
-set dir=tempdir
-" fix issues on win8
-" set dir=$TEMP
+" local temp directory config
+" let g:tempdir='/tmp'
+" execute 'set viewdir='.g:tempdir
+" execute 'set dir='.g:tempdir
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
