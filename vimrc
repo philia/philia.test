@@ -245,8 +245,9 @@ endif
 
 " local temp directory config
 " let g:tempdir='/tmp'
-" execute 'set viewdir='.g:tempdir
-" execute 'set dir='.g:tempdir
+" MAKE SURE these folders exist
+" execute 'set viewdir='.g:tempdir.'/vim.view'
+" execute 'set dir='.g:tempdir.'/vim.tmp'
 
 " cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
