@@ -22,4 +22,6 @@ bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
 
-cd ~/
+#!important! DONOT add this in bashrc
+# Got "No such file or folder" error once when trying to ./somescript.sh because of this
+#cd ~/
