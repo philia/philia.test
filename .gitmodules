@@ -28,3 +28,9 @@
 [submodule "vimfiles/bundle/vim-YouCompleteMe"]
 	path = vimfiles/bundle/vim-YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "neosnippet"]
+	path = neosnippet
+	url = git@github.com:Shougo/neosnippet.git
+[submodule "neocomplcache"]
+	path = neocomplcache
+	url = git@github.com:Shougo/neocomplcache.git
