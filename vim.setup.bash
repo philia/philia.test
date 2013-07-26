@@ -19,6 +19,8 @@
 #git clone git@github.com:scrooloose/nerdtree.git
 #git clone git@github.com:godlygeek/tabular.git
 #git clone git@github.com:Valloric/YouCompleteMe.git
+#git clone git@github.com:Shougo/neocomplcache.git
+#git clone git@github.com:Shougo/neosnippet.git
 
 ##install
 #copy pathogen.vim to $VIMRUNTIME/autoload/
