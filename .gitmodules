@@ -1,0 +1,30 @@
+[submodule "vimfiles/bundle/vim-indent-guides"]
+	path = vimfiles/bundle/vim-indent-guides
+	url = git@github.com:nathanaelkane/vim-indent-guides.git
+[submodule "vimfiles/bundle/vim-matchit"]
+	path = vimfiles/bundle/vim-matchit
+	url = git@github.com:edsono/vim-matchit.git
+[submodule "vimfiles/bundle/vim-powerline"]
+	path = vimfiles/bundle/vim-powerline
+	url = git@github.com:Lokaltog/vim-powerline.git
+[submodule "vimfiles/bundle/vim-easymotion"]
+	path = vimfiles/bundle/vim-easymotion
+	url = git@github.com:Lokaltog/vim-easymotion.git
+[submodule "vimfiles/bundle/vim-taglist"]
+	path = vimfiles/bundle/vim-taglist
+	url = git@github.com:thisivan/vim-taglist.git
+[submodule "vimfiles/bundle/vim-surround"]
+	path = vimfiles/bundle/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "vimfiles/bundle/vim-ctrlp"]
+	path = vimfiles/bundle/vim-ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vimfiles/bundle/vim-nerdtree"]
+	path = vimfiles/bundle/vim-nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vimfiles/bundle/vim-tabular"]
+	path = vimfiles/bundle/vim-tabular
+	url = git@github.com:godlygeek/tabular.git
+[submodule "vimfiles/bundle/vim-YouCompleteMe"]
+	path = vimfiles/bundle/vim-YouCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
