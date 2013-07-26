@@ -249,6 +249,7 @@ endif
 " execute 'set viewdir='.g:tempdir.'/vim.view'
 " execute 'set dir='.g:tempdir.'/vim.tmp'
 
+" Only open this when it is absolutely required, it prevents NerdTree to open at the directory current file is in when a file is opened when vim starts
 "" cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
 " call pathogen#infect('~/dev/var/vimfiles/bundle')
