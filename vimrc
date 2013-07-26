@@ -249,7 +249,7 @@ endif
 " execute 'set viewdir='.g:tempdir.'/vim.view'
 " execute 'set dir='.g:tempdir.'/vim.tmp'
 
-" cd d:\work
+"" cd d:\work
 " call pathogen#infect('d:\work\var\vimfiles\bundle')
 " call pathogen#infect('~/dev/var/vimfiles/bundle')
 " call pathogen#helptags()
