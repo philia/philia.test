@@ -135,7 +135,7 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
-if has("win32")
+"if has("win32")
     " Enable neocompl in windows
 
     " neocomplcache configuration
@@ -211,9 +211,9 @@ if has("win32")
     let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
     let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-else
-    " YouCompleteMe in Linux
-endif
+"else
+"    " YouCompleteMe in Linux
+"endif
 
 " Startup commands
 au BufWinLeave * silent! mkview
