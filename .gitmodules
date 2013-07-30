@@ -25,9 +25,6 @@
 [submodule "vimfiles/bundle/vim-tabular"]
 	path = vimfiles/bundle/vim-tabular
 	url = git@github.com:godlygeek/tabular.git
-[submodule "vimfiles/bundle/vim-YouCompleteMe"]
-	path = vimfiles/bundle/vim-YouCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
 [submodule "vimfiles/bundle/vim-neosnippet"]
 	path = vimfiles/bundle/vim-neosnippet
 	url = git@github.com:Shougo/neosnippet.git
