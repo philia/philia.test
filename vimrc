@@ -135,6 +135,9 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
+com! -nargs=0 -range=% Vd exec ':<line1>,<line2>v/'.@/.'/d'
+com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
+
 "if has("win32")
     " Enable neocompl in windows
 
