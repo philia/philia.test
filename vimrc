@@ -255,8 +255,8 @@ endif
 
 " Only open this when it is absolutely required, it prevents NerdTree to open at the directory current file is in when a file is opened when vim starts
 "" cd d:\work
-" call pathogen#infect('d:\work\var\vimfiles\bundle')
-" call pathogen#infect('~/dev/var/vimfiles/bundle')
+" call pathogen#infect('d:\work\var\vimfiles\bundle\{}')
+" call pathogen#infect('~/dev/var/vimfiles/bundle\{}')
 " call pathogen#helptags()
 " where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
 " let g:netrw_home='d:\dev\tmp'
