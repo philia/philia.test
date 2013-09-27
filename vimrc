@@ -227,12 +227,15 @@ au BufWinEnter * silent! loadview
 " autocmd BufEnter * silent! lcd %:p:h
 
 " TODO: local config
+source /home/httpd/work/var/github/philia.test/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim
+source /home/httpd/work/var/github/philia.test/vimrc
+
 " make sure this line is added as the first line before source this vimrc
 " for Windows
-" source d:\dev\var\vimfiles\autoload\pathogen.vim
+" source d:\dev\var\github\philia.test\vimfiles\bundle\vim-pathogen\autoload\pathogen.vim
 " source d:\dev\var\github\philia.test\vimrc
 " for Linux
-" source ~/dev/var/vimfiles/autoload/pathogen.vim
+" source ~/dev/var/github/philia.test/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim
 " source ~/dev/var/github/philia.test/vimrc
 
 " Choose whether to enable or not
