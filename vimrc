@@ -28,8 +28,6 @@ set expandtab
 " enable the feature to put modified buffer in background
 set hidden
 
-language messages en
-
 let mapleader = ","
 
 if exists("+autochdir")
