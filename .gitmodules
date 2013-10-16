@@ -4,9 +4,6 @@
 [submodule "vimfiles/bundle/vim-matchit"]
 	path = vimfiles/bundle/vim-matchit
 	url = git@github.com:edsono/vim-matchit.git
-[submodule "vimfiles/bundle/vim-powerline"]
-	path = vimfiles/bundle/vim-powerline
-	url = git@github.com:Lokaltog/vim-powerline.git
 [submodule "vimfiles/bundle/vim-easymotion"]
 	path = vimfiles/bundle/vim-easymotion
 	url = git@github.com:Lokaltog/vim-easymotion.git
@@ -40,3 +37,6 @@
 [submodule "vimfiles/bundle/DBGPavim"]
 	path = vimfiles/bundle/DBGPavim
 	url = git@github.com:brookhong/DBGPavim.git
+[submodule "vimfiles/bundle/vim-airline"]
+	path = vimfiles/bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
