@@ -229,11 +229,14 @@ au BufWinEnter * silent! loadview
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
 " for Windows
-" source d:\dev\var\github\philia.test\vimfiles\bundle\vim-pathogen\autoload\pathogen.vim
-" source d:\dev\var\github\philia.test\vimrc
+" let g:phrepopath='d:\work\var\github\philia.test'
+" let g:tempdir='d:\work\tmp'
 " for Linux
-" source ~/dev/var/github/philia.test/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim
-" source ~/dev/var/github/philia.test/vimrc
+" let g:phrepopath='~/dev/var/github/philia.test'
+" let g:tempdir='/tmp'
+" MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
+" execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
+" execute 'source '.g:phrepopath.'/vimrc'
 
 " Choose whether to enable or not
 " set encoding=UTF-8
@@ -247,16 +250,9 @@ if has("win32")
 else
 endif
 
-" local temp directory config
-" let g:tempdir='/tmp'
-" MAKE SURE these folders exist
-" execute 'set viewdir='.g:tempdir.'/vim.view'
-" execute 'set dir='.g:tempdir.'/vim.tmp'
-
 " Only open this when it is absolutely required, it prevents NerdTree to open at the directory current file is in when a file is opened when vim starts
 "" cd d:\work
-" call pathogen#infect('d:\work\var\vimfiles\bundle\{}')
-" call pathogen#infect('~/dev/var/vimfiles/bundle\{}')
+" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
 " call pathogen#helptags()
 " where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
 " let g:netrw_home='d:\dev\tmp'
