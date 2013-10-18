@@ -233,10 +233,9 @@ au BufWinEnter * silent! loadview
 " let g:tempdir='d:\work\tmp'
 " let g:tempdir='/tmp'
 
-" Uncomment these lines to enable plugins and customized config
+" Uncomment these lines to enable plugins and customized config, MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
 " execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
 " execute 'source '.g:phrepopath.'/vimrc'
-" MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
 " execute 'set viewdir='.g:tempdir.'/vim.view'
 " execute 'set dir='.g:tempdir.'/vim.tmp'
 
