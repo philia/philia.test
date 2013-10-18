@@ -228,15 +228,17 @@ au BufWinEnter * silent! loadview
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
-" for Windows
 " let g:phrepopath='d:\work\var\github\philia.test'
-" let g:tempdir='d:\work\tmp'
-" for Linux
 " let g:phrepopath='~/dev/var/github/philia.test'
+" let g:tempdir='d:\work\tmp'
 " let g:tempdir='/tmp'
-" MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
+
+" Uncomment these lines to enable plugins and customized config
 " execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
 " execute 'source '.g:phrepopath.'/vimrc'
+" MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
+" execute 'set viewdir='.g:tempdir.'/vim.view'
+" execute 'set dir='.g:tempdir.'/vim.tmp'
 
 " Choose whether to enable or not
 " set encoding=UTF-8
