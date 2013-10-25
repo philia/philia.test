@@ -23,6 +23,10 @@ bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 bind '"\C-i": complete'
 
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+
 #!important! DONOT add this in bashrc
 # Got "No such file or folder" error once when trying to ./somescript.sh because of this
 #cd ~/
