@@ -27,6 +27,7 @@ set shiftwidth=4
 set expandtab
 " enable the feature to put modified buffer in background
 set hidden
+set tags=tags;/
 
 let mapleader = ","
 
@@ -225,6 +226,8 @@ au BufWinEnter * silent! loadview
 " autocmd VimEnter * Ex
 " this will help if 'set autochdir' doesn't work sometimes
 " autocmd BufEnter * silent! lcd %:p:h
+au BufWinEnter * silent! UpdateTags
+au BufWinEnter * silent! HighlightTags
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
