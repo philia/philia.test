@@ -40,12 +40,12 @@
 [submodule "vimfiles/bundle/vim-airline"]
 	path = vimfiles/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
-[submodule "vimfiles/bundle/ack"]
-	path = vimfiles/bundle/ack
-	url = git@github.com:mileszs/ack.vim
 [submodule "vimfiles/bundle/vim-easytags"]
 	path = vimfiles/bundle/vim-easytags
 	url = git@github.com:xolox/vim-easytags.git
 [submodule "vimfiles/bundle/vim-misc"]
 	path = vimfiles/bundle/vim-misc
 	url = git@github.com:xolox/vim-misc.git
+[submodule "vimfiles/bundle/ag"]
+	path = vimfiles/bundle/ag
+	url = git@github.com:rking/ag.vim
