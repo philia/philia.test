@@ -3,7 +3,7 @@
 // @namespace  http://use.i.E.your.homepage/
 // @version    0.1
 // @description  Auto check-in button clicker for Xiami music
-// @match      http://www.xiami.com/home
+// @match      http://www.xiami.com
 // @copyright  2012+, You
 // @require    https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // ==/UserScript==
