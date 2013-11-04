@@ -252,6 +252,13 @@ au BufWinEnter * silent! HighlightTags
 if has("win32")
     " set shell=D:/MinGW/msys/1.0/bin/bash.exe
     " set shellcmdflag=--login\ -c
+    " The following plugins cause gvim to quit in windows, so they are disabled
+    if has('gui_running')
+        let g:pathogen_disabled = []
+        call add(g:pathogen_disabled, 'DBGPavim')
+        call add(g:pathogen_disabled, 'vim-easytags')
+        call add(g:pathogen_disabled, 'vim-misc')
+    endif
 else
 endif
 
