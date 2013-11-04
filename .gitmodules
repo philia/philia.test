@@ -49,3 +49,6 @@
 [submodule "vimfiles/bundle/ag"]
 	path = vimfiles/bundle/ag
 	url = git@github.com:rking/ag.vim
+[submodule "vimfiles/bundle/vim-colorschemes"]
+	path = vimfiles/bundle/vim-colorschemes
+	url = git@github.com:flazz/vim-colorschemes.git

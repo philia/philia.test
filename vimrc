@@ -1,5 +1,9 @@
 " Global configuration
-colorscheme desert
+" Randomize colorscheme
+let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n")
+exe 'so ' . mycolors[localtime() % len(mycolors)]
+unlet mycolors
+
 syntax on
 
 if has("autocmd")
@@ -139,6 +143,7 @@ silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
 com! -nargs=0 -range=% Vd exec ':<line1>,<line2>v/'.@/.'/d'
 com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
+com! DCS exec ':colorscheme desert'
 
 "if has("win32")
     " Enable neocompl in windows
