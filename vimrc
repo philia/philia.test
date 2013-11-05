@@ -27,7 +27,6 @@ set shiftwidth=4
 set expandtab
 " enable the feature to put modified buffer in background
 set hidden
-set tags=tags;/
 
 let mapleader = ","
 
