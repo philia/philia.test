@@ -1,9 +1,5 @@
 " Global configuration
 " Randomize colorscheme
-let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n")
-exe 'so ' . mycolors[localtime() % len(mycolors)]
-unlet mycolors
-
 syntax on
 
 if has("autocmd")
@@ -143,7 +139,9 @@ silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
 com! -nargs=0 -range=% Vd exec ':<line1>,<line2>v/'.@/.'/d'
 com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
+
 com! DCS exec ':colorscheme desert'
+com! RCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 
 "if has("win32")
     " Enable neocompl in windows
@@ -228,6 +226,7 @@ com! DCS exec ':colorscheme desert'
 " Startup commands
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
+RCS " Random select a color scheme
 " automatically opens netrw browser
 " autocmd VimEnter * Ex
 " this will help if 'set autochdir' doesn't work sometimes
