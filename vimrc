@@ -58,9 +58,9 @@ let g:netrw_mousemaps=0
 let g:netrw_keepdir=0
 " let g:netrw_liststyle=3
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 1
-let g:indent_guides_guide_size = 1
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_start_level = 1
+" let g:indent_guides_guide_size = 1
 
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
@@ -81,7 +81,7 @@ if has("gui_running")
     " hide right scrollbar
     set guioptions -=r
 else
-    let g:indent_guides_auto_colors = 1
+    " let g:indent_guides_auto_colors = 1
     " hi IndentGuidesOdd ctermbg=lightgray
     " hi IndentGuidesEven ctermbg=darkgray
 endif

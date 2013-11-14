@@ -1,6 +1,3 @@
-[submodule "vimfiles/bundle/vim-indent-guides"]
-	path = vimfiles/bundle/vim-indent-guides
-	url = git@github.com:nathanaelkane/vim-indent-guides.git
 [submodule "vimfiles/bundle/vim-matchit"]
 	path = vimfiles/bundle/vim-matchit
 	url = git@github.com:edsono/vim-matchit.git
