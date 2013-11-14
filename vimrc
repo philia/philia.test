@@ -225,7 +225,8 @@ com! RCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "
 " Startup commands
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
-RCS " Random select a color scheme
+"RCS " Random select a color scheme
+DCS " Select default color scheme
 " automatically opens netrw browser
 " autocmd VimEnter * Ex
 " this will help if 'set autochdir' doesn't work sometimes
