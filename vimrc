@@ -289,8 +289,6 @@ if has("win32")
     if has('gui_running')
         let g:pathogen_disabled = []
         call add(g:pathogen_disabled, 'DBGPavim')
-        call add(g:pathogen_disabled, 'vim-easytags')
-        call add(g:pathogen_disabled, 'vim-misc')
     endif
 else
 endif
