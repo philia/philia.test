@@ -1,5 +1,4 @@
 " Global configuration
-" Randomize colorscheme
 syntax on
 
 if has("autocmd")
@@ -45,6 +44,19 @@ set backspace=2
 
 " disable preview window (annoying 'Scratch')
 set completeopt-=preview
+
+if has('cscope')
+    set cscopetag cscopeverbose
+    if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+    endif
+    cnoreabbrev csa cs add
+    cnoreabbrev csf cs find
+    cnoreabbrev csk cs kill
+    cnoreabbrev csr cs reset
+    cnoreabbrev css cs show
+    cnoreabbrev csh cs help
+endif
 
 " Variables
 "let g:netrw_browse_split=3 " open file in new tab
@@ -140,7 +152,9 @@ com! -nargs=0 -range=% Vd exec ':<line1>,<line2>v/'.@/.'/d'
 com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
 
 com! DCS exec ':colorscheme desert'
-com! RCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
+" com! RCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
+" Generate CScope database
+com! GCS execute '!find . -name *.php -o -name *.c -o -name *.cpp > cscope.files; cscope -b; rm cscope.files;'
 
 "if has("win32")
     " Enable neocompl in windows
@@ -231,8 +245,18 @@ DCS " Select default color scheme
 " autocmd VimEnter * Ex
 " this will help if 'set autochdir' doesn't work sometimes
 " autocmd BufEnter * silent! lcd %:p:h
-au BufWinEnter * silent! UpdateTags
-au BufWinEnter * silent! HighlightTags
+" autoloading for cscope
+function! LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+    endif
+endfunction
+
+au BufEnter * call LoadCscope()
 
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
