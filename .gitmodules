@@ -4,9 +4,6 @@
 [submodule "vimfiles/bundle/vim-easymotion"]
 	path = vimfiles/bundle/vim-easymotion
 	url = git@github.com:Lokaltog/vim-easymotion.git
-[submodule "vimfiles/bundle/vim-taglist"]
-	path = vimfiles/bundle/vim-taglist
-	url = git@github.com:thisivan/vim-taglist.git
 [submodule "vimfiles/bundle/vim-surround"]
 	path = vimfiles/bundle/vim-surround
 	url = git@github.com:tpope/vim-surround.git
@@ -37,9 +34,6 @@
 [submodule "vimfiles/bundle/vim-airline"]
 	path = vimfiles/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
-[submodule "vimfiles/bundle/vim-easytags"]
-	path = vimfiles/bundle/vim-easytags
-	url = git@github.com:xolox/vim-easytags.git
 [submodule "vimfiles/bundle/vim-misc"]
 	path = vimfiles/bundle/vim-misc
 	url = git@github.com:xolox/vim-misc.git
