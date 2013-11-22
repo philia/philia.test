@@ -153,8 +153,6 @@ com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
 
 com! DCS exec ':colorscheme desert'
 " com! RCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
-" Generate CScope database
-com! GCS execute '!find . -name *.php -o -name *.c -o -name *.cpp > cscope.files; cscope -b; rm cscope.files;'
 
 "if has("win32")
     " Enable neocompl in windows
@@ -255,6 +253,13 @@ function! LoadCscope()
         set cscopeverbose
     endif
 endfunction
+
+function! GenerateCscope(projpath)
+    execute '!cd '. fnamemodify(a:projpath,':h') .' && find . -name *.php -o -name *.c -o -name *.cpp > cscope.files && cscope -b -i cscope.files && rm cscope.files;'
+endfunction
+
+" Generate CScope database
+com! -nargs=* -complete=dir GCS call GenerateCscope(<f-args>)
 
 au BufEnter * call LoadCscope()
 
