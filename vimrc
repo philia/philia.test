@@ -270,7 +270,13 @@ au BufEnter * call LoadCscope()
 " let g:tempdir='d:\work\tmp'
 " let g:tempdir='/tmp'
 
-" Uncomment these lines to enable plugins and customized config, MAKE SURE these folders exist: g:tempdir/vim.view, g:tempdir/vim.tmp
+" Uncomment these lines to enable plugins and customized config
+" if !isdirectory(g:tempdir.'/vim.view')
+"     call mkdir(g:tempdir.'/vim.view')
+" endif
+" if !isdirectory(g:tempdir.'/vim.tmp')
+"     call mkdir(g:tempdir.'/vim.tmp')
+" endif
 " execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
 " execute 'source '.g:phrepopath.'/vimrc'
 " execute 'set viewdir='.g:tempdir.'/vim.view'
