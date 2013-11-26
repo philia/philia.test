@@ -15,6 +15,7 @@ set -o vi
 alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
 alias cdv="cd ~/mnt/var"
+alias cdp="cd ~/mnt/var/github/philia.test"
 alias vi="vim"
 alias v="vim"
 #alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
