@@ -128,18 +128,9 @@ silent! nnoremap <unique> <silent> <Leader>fdi :set foldmethod=indent<CR>
 silent! nnoremap <unique> <silent> <Leader>fdm :set foldmethod=manual<CR>
 
 " Plugins
-" \fe to open a new tab as the first one, then open netrw
-silent! nnoremap <unique> <silent> <Leader>fe :0tabnew .<CR>
 
-" \T to open taglist
-silent! nnoremap <unique> <silent> <Leader>T :Tlist<CR>
-" \E to open :Ex (netrw browse)
-silent! nnoremap <unique> <silent> <Leader>E :Ex<CR>
 " \N to open :NerdTree
 silent! nnoremap <unique> <silent> <Leader>N :NERDTree<CR>
-
-" \ctc to open commant-T using input path
-silent! nnoremap <unique> <Leader>ctc :CommandT<Space>
 
 " \cpb to open CtrlP using buffer
 silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
