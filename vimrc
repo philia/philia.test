@@ -59,21 +59,6 @@ if has('cscope')
 endif
 
 " Variables
-"let g:netrw_browse_split=3 " open file in new tab
-"let g:netrw_browse_split=0 " re-using the same window
-let g:netrw_sort_direction='reverse'
-" let g:netrw_bufsettings='noma nomod nu nobl nowrap ro'
-let g:netrw_bufsettings='noma nomod relativenumber nobl nowrap ro'
-let g:netrw_cygwin=0
-let g:netrw_silent=1
-let g:netrw_mousemaps=0
-let g:netrw_keepdir=0
-" let g:netrw_liststyle=3
-
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_start_level = 1
-" let g:indent_guides_guide_size = 1
-
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 " Configure relativenumber for NerdTree:
@@ -81,11 +66,11 @@ let NERDTreeQuitOnOpen = 1
 
 " identifies gvim
 if has("gui_running")
-    winpos 840 0
+    " winpos 840 0
     " set lines=62
     " set columns=110
     " maximize the window
-    au GUIEnter * simalt ~X
+    " au GUIEnter * simalt ~X
     " hide menu bar
     set guioptions -=m
     " hide toolbar
@@ -93,16 +78,7 @@ if has("gui_running")
     " hide right scrollbar
     set guioptions -=r
 else
-    " let g:indent_guides_auto_colors = 1
-    " hi IndentGuidesOdd ctermbg=lightgray
-    " hi IndentGuidesEven ctermbg=darkgray
 endif
-
-" let g:Powerline_symbols = 'fancy'
-" let g:Powerline_cache_enabled = 0
-let g:Powerline_symbols = 'compatible'
-let g:Powerline_stl_path_style = 'full'
-let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 
 let g:ctrlp_clear_cache_on_exit = 0
 
@@ -122,10 +98,6 @@ silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 " Commands
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
-" \fdi to fold by indent
-silent! nnoremap <unique> <silent> <Leader>fdi :set foldmethod=indent<CR>
-" \fdm to fold by manual
-silent! nnoremap <unique> <silent> <Leader>fdm :set foldmethod=manual<CR>
 
 " Plugins
 
@@ -139,11 +111,12 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
-com! -nargs=0 -range=% Vd exec ':<line1>,<line2>v/'.@/.'/d'
-com! -nargs=0 -range=% Gd exec ':<line1>,<line2>g/'.@/.'/d'
-
 com! DCS exec ':colorscheme desert'
-com! RCS exec 'let randcolor=["solarized", "molokai"] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
+com! RCS exec 'let randcolor=[
+            \"desert256",
+            \"molokai", 
+            \"rdark-terminal"
+            \] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
 com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 
 "if has("win32")
