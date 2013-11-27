@@ -16,7 +16,7 @@ GM_log("PD: $().jquery: " + $().jquery);
 //$(document).ready($("#check_in").click());
 
 function autocheckin() {
-    var elem = $('b.icon.toSign');
+    var elem = $('b.icon.tosign');
     if (typeof elem.get(0) === "undefined") {
         GM_log("PD: no action element found, waiting....");
         setTimeout(autocheckin, 1000);
