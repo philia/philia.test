@@ -10,9 +10,6 @@ alias ls="ls --color=auto --show-control-chars"
 alias ll="ls -alF --show-control-chars"
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
-
-set -o vi
-
 alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
 alias cdv="cd ~/mnt/var"
@@ -20,6 +17,8 @@ alias cdp="cd ~/mnt/var/github/philia.test"
 alias vi="vim"
 alias v="vim"
 #alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
+
+set -o vi
 
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
