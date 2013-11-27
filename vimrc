@@ -64,7 +64,7 @@ let NERDTreeQuitOnOpen = 1
 " bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
 
 " identifies gvim
-if has("gui_running")
+if has("win32") && has("gui_running")
     " winpos 840 0
     " set lines=62
     " set columns=110
@@ -76,6 +76,9 @@ if has("gui_running")
     set guioptions -=T
     " hide right scrollbar
     set guioptions -=r
+
+    let g:pathogen_disabled = []
+    call add(g:pathogen_disabled, 'DBGPavim')
 else
 endif
 
@@ -240,17 +243,6 @@ com! -nargs=* -complete=dir GCS call GenerateCscope(<f-args>)
 " execute 'source '.g:phrepopath.'/vimrc'
 " execute 'set viewdir='.g:tempdir.'/vim.view'
 " execute 'set dir='.g:tempdir.'/vim.tmp'
-
-" Choose whether to enable or not
-
-if has("win32")
-    " The following plugins cause gvim to quit in windows, so they are disabled
-    if has('gui_running')
-        let g:pathogen_disabled = []
-        call add(g:pathogen_disabled, 'DBGPavim')
-    endif
-else
-endif
 
 " call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
 " call pathogen#helptags()
