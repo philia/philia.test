@@ -35,15 +35,14 @@ endif
 
 set guitablabel="%r%m%t"
 
-" show invisible chars like TAB
-" set list
-" set nolist
-
 " fix issue about backspace doesn't work in insert mode
 set backspace=2
 
 " disable preview window (annoying 'Scratch')
 set completeopt-=preview
+set encoding=UTF-8
+" for linux to display colors for powerline, this also affect indent-guides under msys
+set t_Co=256
 
 if has('cscope')
     set cscopetag cscopeverbose
@@ -111,7 +110,7 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 com! DCS exec ':colorscheme desert'
 com! RCS exec 'let randcolor=[
             \"solarized",
@@ -204,11 +203,8 @@ com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe 
 " Startup commands
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
-au BufWinEnter * silent! RCS " Random select a default color scheme (in randcolor list)
-" automatically opens netrw browser
-" autocmd VimEnter * Ex
-" this will help if 'set autochdir' doesn't work sometimes
-" autocmd BufEnter * silent! lcd %:p:h
+au BufEnter * call LoadCscope()
+
 " autoloading for cscope
 function! LoadCscope()
     let db = findfile("cscope.out", ".;")
@@ -227,13 +223,10 @@ endfunction
 " Generate CScope database
 com! -nargs=* -complete=dir GCS call GenerateCscope(<f-args>)
 
-au BufEnter * call LoadCscope()
-
+"
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
-" let g:phrepopath='d:\work\var\github\philia.test'
 " let g:phrepopath='~/dev/var/github/philia.test'
-" let g:tempdir='d:\work\tmp'
 " let g:tempdir='/tmp'
 
 " Uncomment these lines to enable plugins and customized config
@@ -249,14 +242,8 @@ au BufEnter * call LoadCscope()
 " execute 'set dir='.g:tempdir.'/vim.tmp'
 
 " Choose whether to enable or not
-" set encoding=UTF-8
-" for linux to display colors for powerline, this also affect indent-guides under msys
-" set t_Co=256
 
-" fix issue about "unable to open swap file for [No Name], recover impossible also this prevent .swp file from generating to current directory of netrw for Windows
 if has("win32")
-    " set shell=D:/MinGW/msys/1.0/bin/bash.exe
-    " set shellcmdflag=--login\ -c
     " The following plugins cause gvim to quit in windows, so they are disabled
     if has('gui_running')
         let g:pathogen_disabled = []
@@ -265,15 +252,7 @@ if has("win32")
 else
 endif
 
-" Only open this when it is absolutely required, it prevents NerdTree to open at the directory current file is in when a file is opened when vim starts
-"" cd d:\work
 " call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
 " call pathogen#helptags()
-" where bookmarks and history are saved (as .netrwbook and .netrwhist), must be configured because of bugs of netrw, it saves .netrwbook and .netrwhist to the first folder in bundle
-" let g:netrw_home='d:\dev\tmp'
 
-" let g:netrw_scp_cmd='d:\dev\utils\pscp.exe -i d:\dev\keys\private.ppk'
-" let g:netrw_list_cmd='d:\dev\utils\plink.exe USEPORT HOSTNAME -i d:\dev\keys\private.ppk ls -aF'
-" usage:
-" :e scp://root@ip//path/filename to open file
-" :e scp://root@ip//path/ to open path (remember the last / is very important for open remote directory)
+" RCS " Random select a default color scheme (in randcolor list)
