@@ -113,7 +113,7 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 com! DCS exec ':colorscheme desert'
 com! RCS exec 'let randcolor=[
             \"solarized",
