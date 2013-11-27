@@ -113,6 +113,7 @@ silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
 com! DCS exec ':colorscheme desert'
 com! RCS exec 'let randcolor=[
+            \"solarized",
             \"desert256",
             \"molokai", 
             \"rdark-terminal"
