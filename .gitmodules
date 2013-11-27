@@ -1,42 +1,56 @@
 [submodule "vimfiles/bundle/vim-matchit"]
 	path = vimfiles/bundle/vim-matchit
 	url = git@github.com:edsono/vim-matchit.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-easymotion"]
 	path = vimfiles/bundle/vim-easymotion
 	url = git@github.com:Lokaltog/vim-easymotion.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-surround"]
 	path = vimfiles/bundle/vim-surround
 	url = git@github.com:tpope/vim-surround.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-ctrlp"]
 	path = vimfiles/bundle/vim-ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-nerdtree"]
 	path = vimfiles/bundle/vim-nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-tabular"]
 	path = vimfiles/bundle/vim-tabular
 	url = git@github.com:godlygeek/tabular.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-neosnippet"]
 	path = vimfiles/bundle/vim-neosnippet
 	url = git@github.com:Shougo/neosnippet.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-neocomplcache"]
 	path = vimfiles/bundle/vim-neocomplcache
 	url = git@github.com:Shougo/neocomplcache.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-fugitive"]
 	path = vimfiles/bundle/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-pathogen"]
 	path = vimfiles/bundle/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+    ignore = dirty
 [submodule "vimfiles/bundle/DBGPavim"]
 	path = vimfiles/bundle/DBGPavim
 	url = git@github.com:brookhong/DBGPavim.git
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-airline"]
 	path = vimfiles/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
+    ignore = dirty
 [submodule "vimfiles/bundle/ag"]
 	path = vimfiles/bundle/ag
 	url = git@github.com:rking/ag.vim
+    ignore = dirty
 [submodule "vimfiles/bundle/vim-colorschemes"]
 	path = vimfiles/bundle/vim-colorschemes
 	url = git@github.com:flazz/vim-colorschemes
+    ignore = dirty
