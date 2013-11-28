@@ -82,30 +82,20 @@ if has("win32") && has("gui_running")
 else
 endif
 
-let g:ctrlp_clear_cache_on_exit = 0
-
 " Key bindings
+inoremap jk <esc>
+inoremap kj <esc>
 " Tab management
 " \e to open a new tab as the first one
 silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
-" \o to close all tabs except the current
-silent! nnoremap <unique> <silent> <Leader>o :tabo<CR>
-" \m0 to move current tab as first one
-silent! nnoremap <unique> <silent> <Leader>m0 :tabm0<CR>
-" \m1 to move current tab as second one
-silent! nnoremap <unique> <silent> <Leader>m1 :tabm1<CR>
-" \m$ to move current tab to the last one
-silent! nnoremap <unique> <silent> <Leader>m$ :tabm<CR>
 
 " Commands
 " \n to call :noh
 silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 
 " Plugins
-
 " \N to open :NerdTree
 silent! nnoremap <unique> <silent> <Leader>N :NERDTree<CR>
-
 " \cpb to open CtrlP using buffer
 silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
 " \cpm to open CtrlP using MRU file mode
@@ -113,7 +103,9 @@ silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
 
+let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
+
 com! DCS exec ':colorscheme desert'
 com! RCS exec 'let randcolor=[
             \"solarized",
