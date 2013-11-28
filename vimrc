@@ -224,7 +224,7 @@ com! -nargs=* -complete=dir GCS call GenerateCscope(<f-args>)
 " let g:phrepopath='~/dev/var/github/philia.test'
 " let g:tempdir='/tmp'
 
-" Uncomment these lines to enable plugins and customized config
+"" Uncomment these lines to enable plugins and customized config
 " if !isdirectory(g:tempdir.'/vim.view')
 "     call mkdir(g:tempdir.'/vim.view')
 " endif
