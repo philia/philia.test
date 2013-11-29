@@ -102,6 +102,10 @@ silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
 silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
 " \cpc to open customized path
 silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
+" \fdi to set fold method to indent
+silent! nnoremap <unique> <Leader>fdi :set foldmethod=indent<CR>
+" \fdm to set fold method to manual
+silent! nnoremap <unique> <Leader>fdm :set foldmethod=manual<CR>
 
 let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
