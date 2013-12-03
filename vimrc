@@ -42,6 +42,7 @@ set backspace=2
 set completeopt-=preview
 set encoding=UTF-8
 " for linux to display colors for powerline, this also affect indent-guides under msys
+set t_ut=
 set t_Co=256
 
 if has('cscope')
