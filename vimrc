@@ -116,7 +116,9 @@ com! RCS exec 'let randcolor=[
             \"solarized",
             \"desert256",
             \"molokai", 
-            \"rdark-terminal"
+            \"rdark-terminal",
+            \"jellybeans",
+            \"mint"
             \] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
 com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 
