@@ -1,49 +1,49 @@
 " Global configuration
-syntax on
+    syntax on
 
-if has("autocmd")
-    filetype plugin indent on
-endif
+    if has("autocmd")
+        filetype plugin indent on
+    endif
 
-set nocompatible
-set guifont=Consolas
-" set number
-set relativenumber
-set nobackup
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-set autoindent
-set cindent
-set wildmenu
-set viminfo='100,f1
-set background=dark
-set foldcolumn=3
-set laststatus=2
-set tabstop=4
-set shiftwidth=4
-set expandtab
-" enable the feature to put modified buffer in background
-set hidden
+    set nocompatible
+    set guifont=Consolas
+    " set number
+    set relativenumber
+    set nobackup
+    set ignorecase
+    set smartcase
+    set incsearch
+    set hlsearch
+    set autoindent
+    set cindent
+    set wildmenu
+    set viminfo='100,f1
+    set background=dark
+    set foldcolumn=3
+    set laststatus=2
+    set tabstop=4
+    set shiftwidth=4
+    set expandtab
+    " enable the feature to put modified buffer in background
+    set hidden
 
-let mapleader = ","
+    let mapleader = ","
 
-if exists("+autochdir")
-    set autochdir
-endif
+    if exists("+autochdir")
+        set autochdir
+    endif
 
-set guitablabel="%r%m%t"
+    set guitablabel="%r%m%t"
 
-" fix issue about backspace doesn't work in insert mode
-set backspace=2
+    " fix issue about backspace doesn't work in insert mode
+    set backspace=2
 
-" disable preview window (annoying 'Scratch')
-set completeopt-=preview
-set encoding=UTF-8
-" for linux to display colors for powerline, this also affect indent-guides under msys
-set t_ut=
-set t_Co=256
+    " disable preview window (annoying 'Scratch')
+    set completeopt-=preview
+    set encoding=UTF-8
+    " for linux to display colors for powerline, this also affect indent-guides under msys
+    set t_ut=
+    set t_Co=256
 
 if has('cscope')
     set cscopetag cscopeverbose
@@ -84,29 +84,29 @@ else
 endif
 
 " Key bindings
-inoremap jk <esc>
-inoremap kj <esc>
-" Tab management
-" \e to open a new tab as the first one
-silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
+    inoremap jk <esc>
+    inoremap kj <esc>
+    " Tab management
+    " \e to open a new tab as the first one
+    silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
 
-" Commands
-" \n to call :noh
-silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
+    " Commands
+    " \n to call :noh
+    silent! nnoremap <unique> <silent> <Leader>n :noh<CR>
 
-" Plugins
-" \N to open :NerdTree
-silent! nnoremap <unique> <silent> <Leader>N :NERDTree<CR>
-" \cpb to open CtrlP using buffer
-silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
-" \cpm to open CtrlP using MRU file mode
-silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
-" \cpc to open customized path
-silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
-" \fdi to set fold method to indent
-silent! nnoremap <unique> <Leader>fdi :set foldmethod=indent<CR>
-" \fdm to set fold method to manual
-silent! nnoremap <unique> <Leader>fdm :set foldmethod=manual<CR>
+    " Plugins
+    " \N to open :NerdTree
+    silent! nnoremap <unique> <silent> <Leader>N :NERDTree<CR>
+    " \cpb to open CtrlP using buffer
+    silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
+    " \cpm to open CtrlP using MRU file mode
+    silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
+    " \cpc to open customized path
+    silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
+    " \fdi to set fold method to indent
+    silent! nnoremap <unique> <Leader>fdi :set foldmethod=indent<CR>
+    " \fdm to set fold method to manual
+    silent! nnoremap <unique> <Leader>fdm :set foldmethod=manual<CR>
 
 let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
@@ -118,7 +118,9 @@ com! RCS exec 'let randcolor=[
             \"molokai", 
             \"rdark-terminal",
             \"jellybeans",
-            \"mint"
+            \"mint",
+            \"navajo-night",
+            \"wombat"
             \] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
 com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 
