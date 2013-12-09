@@ -17,6 +17,7 @@ alias cdp="cd ~/mnt/var/github/philia.test"
 alias vi="vim"
 alias v="vim"
 #alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
+alias sysupd="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
 
 set -o vi
 
