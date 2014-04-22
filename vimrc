@@ -50,12 +50,12 @@ if has('cscope')
     if has('quickfix')
         set cscopequickfix=s-,c-,d-,i-,t-,e-
     endif
-    cnoreabbrev csa cs add
-    cnoreabbrev csf cs find
-    cnoreabbrev csk cs kill
-    cnoreabbrev csr cs reset
-    cnoreabbrev css cs show
-    cnoreabbrev csh cs help
+    cnoreabbrev cs.csa cs add
+    cnoreabbrev cs.csf cs find
+    cnoreabbrev cs.csk cs kill
+    cnoreabbrev cs.csr cs reset
+    cnoreabbrev cs.css cs show
+    cnoreabbrev cs.csh cs help
 endif
 
 " Variables
