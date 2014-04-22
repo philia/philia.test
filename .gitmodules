@@ -40,3 +40,6 @@
 [submodule "vimfiles/bundle/vim-colorschemes"]
 	path = vimfiles/bundle/vim-colorschemes
 	url = git@github.com:flazz/vim-colorschemes
+[submodule "vimfiles/bundle/html5"]
+	path = vimfiles/bundle/html5
+	url = git@github.com:othree/html5.vim
