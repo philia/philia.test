@@ -43,3 +43,6 @@
 [submodule "vimfiles/bundle/html5"]
 	path = vimfiles/bundle/html5
 	url = git@github.com:othree/html5.vim
+[submodule "vimfiles/bundle/neosnippet-snippets"]
+	path = vimfiles/bundle/neosnippet-snippets
+	url = git@github.com:Shougo/neosnippet-snippets
