@@ -100,7 +100,7 @@ endif
     " \cpb to open CtrlP using buffer
     silent! nnoremap <unique> <silent> <Leader>cpb :CtrlPBuffer<CR>
     " \cpm to open CtrlP using MRU file mode
-    silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMRU<CR>
+    silent! nnoremap <unique> <silent> <Leader>cpm :CtrlPMixed<CR>
     " \cpc to open customized path
     silent! nnoremap <unique> <Leader>cpc :CtrlP<Space>
     " \fdi to set fold method to indent
