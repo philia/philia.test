@@ -215,7 +215,7 @@ function! LoadCscope()
     if (!empty(db))
         let path = strpart(db, 0, match(db, "/cscope.out$"))
         set nocscopeverbose " suppress 'duplicate connection' error
-        exe "cs add " . db . " " . path
+        exe "cs add " . db . " " . path . " -C"
         set cscopeverbose
     endif
 endfunction
