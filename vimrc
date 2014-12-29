@@ -223,13 +223,6 @@ function! LoadCscope()
     endif
 endfunction
 
-function! GenerateCscope(projpath)
-    execute '!cd '. fnamemodify(a:projpath,':h') .' && find . -name *.php -o -name *.c -o -name *.cpp > cscope.files && cscope -b -i cscope.files && rm cscope.files;'
-endfunction
-
-" Generate CScope database
-com! -nargs=* -complete=dir GCS call GenerateCscope(<f-args>)
-
 "
 " TODO: local config
 " make sure this line is added as the first line before source this vimrc
