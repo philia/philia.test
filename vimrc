@@ -1,4 +1,4 @@
-" Global configuration
+" {{{ Global configuration
     syntax on
 
     if has("autocmd")
@@ -26,6 +26,8 @@
     set expandtab
     " enable the feature to put modified buffer in background
     set hidden
+    " set default foldmethod to marker {{{,}}}
+    set foldmethod=marker
 
     let mapleader = ","
 
@@ -44,27 +46,8 @@
     " for linux to display colors for powerline, this also affect indent-guides under msys
     set t_ut=
     set t_Co=256
-
-if has('cscope')
-    set cscopetag cscopeverbose
-    if has('quickfix')
-        set cscopequickfix=s-,c-,d-,i-,t-,e-
-    endif
-    cnoreabbrev csa cs add
-    cnoreabbrev csf cs find
-    cnoreabbrev csk cs kill
-    cnoreabbrev csr cs reset
-    cnoreabbrev css cs show
-    cnoreabbrev csh cs help
-endif
-
-" Variables
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen = 1
-" Configure relativenumber for NerdTree:
-" bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
-
-" identifies gvim
+" }}}
+" {{{ Identifies gvim
 if has("win32") && has("gui_running")
     " winpos 840 0
     " set lines=62
@@ -82,8 +65,11 @@ if has("win32") && has("gui_running")
     call add(g:pathogen_disabled, 'DBGPavim')
 else
 endif
-
-" Key bindings
+" }}}
+" {{{ Configure relativenumber for NerdTree:
+" bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
+" }}}
+" {{{ Key bindings
     inoremap jk <esc>
     inoremap kj <esc>
     "   make < > shifts keep selection
@@ -110,23 +96,38 @@ endif
     silent! nnoremap <unique> <Leader>fdi :set foldmethod=indent<CR>
     " \fdm to set fold method to manual
     silent! nnoremap <unique> <Leader>fdm :set foldmethod=manual<CR>
-
+" }}}
+" {{{ Plugins configurations
 let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
-
-com! DCS exec ':colorscheme desert'
-com! RCS exec 'let randcolor=[
-            \"solarized",
-            \"desert256",
-            \"molokai", 
-            \"rdark-terminal",
-            \"jellybeans",
-            \"mint",
-            \"navajo-night",
-            \"wombat"
-            \] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
-com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
-
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+" {{{ cscope
+if has('cscope')
+    set cscopetag cscopeverbose
+    if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+    endif
+    cnoreabbrev csa cs add
+    cnoreabbrev csf cs find
+    cnoreabbrev csk cs kill
+    cnoreabbrev csr cs reset
+    cnoreabbrev css cs show
+    cnoreabbrev csh cs help
+endif
+" {{{ autoloading for cscope
+function! LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path . " -C"
+        set cscopeverbose
+    endif
+endfunction
+" }}}
+" }}}
+" {{{ neocomplete
 "if has("win32")
     " Enable neocompl in windows
 
@@ -203,28 +204,28 @@ com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe 
     let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
     let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-"else
-"    " YouCompleteMe in Linux
-"endif
-
-" Startup commands
+" }}}
+" }}}
+" {{{ Random color scheme
+com! DCS exec ':colorscheme desert'
+com! RCS exec 'let randcolor=[
+            \"solarized",
+            \"desert256",
+            \"molokai", 
+            \"rdark-terminal",
+            \"jellybeans",
+            \"mint",
+            \"navajo-night",
+            \"wombat"
+            \] | exe "colo " . randcolor[localtime() % len(randcolor)] | unlet randcolor'
+com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
+" }}}
+" {{{ Startup commands
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 au BufEnter * call LoadCscope()
-
-" autoloading for cscope
-function! LoadCscope()
-    let db = findfile("cscope.out", ".;")
-    if (!empty(db))
-        let path = strpart(db, 0, match(db, "/cscope.out$"))
-        set nocscopeverbose " suppress 'duplicate connection' error
-        exe "cs add " . db . " " . path . " -C"
-        set cscopeverbose
-    endif
-endfunction
-
-"
-" TODO: local config
+" }}}
+" {{{ TODO: local config
 " make sure this line is added as the first line before source this vimrc
 " let g:phrepopath='~/dev/var/github/philia.test'
 " let g:tempdir='/tmp'
@@ -245,3 +246,4 @@ endfunction
 " call pathogen#helptags()
 
 " RCS " Random select a default color scheme (in randcolor list)
+" }}}
