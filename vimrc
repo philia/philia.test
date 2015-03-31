@@ -121,7 +121,8 @@ function! LoadCscope()
     if (!empty(db))
         let path = strpart(db, 0, match(db, "/cscope.out$"))
         set nocscopeverbose " suppress 'duplicate connection' error
-        exe "cs add " . db . " " . path . " -C"
+        " exe "cs add " . db . " " . path . " -C"
+        exe "cs add " . db . " " . path
         set cscopeverbose
     endif
 endfunction
@@ -221,9 +222,10 @@ com! RCS exec 'let randcolor=[
 com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 " }}}
 " {{{ Startup commands
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
-au BufEnter * call LoadCscope()
+autocmd BufWinLeave * silent! mkview
+autocmd BufWinEnter * silent! loadview
+autocmd BufEnter * call LoadCscope()
+autocmd VimEnter * call LoadCscope()
 " }}}
 " {{{ TODO: local config
 " make sure this line is added as the first line before source this vimrc
