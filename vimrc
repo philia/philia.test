@@ -112,7 +112,7 @@ if has('cscope')
     cnoreabbrev csf cs find
     cnoreabbrev csk cs kill
     cnoreabbrev csr cs reset
-    cnoreabbrev css cs show
+    "cnoreabbrev css cs show
     cnoreabbrev csh cs help
 endif
 " {{{ autoloading for cscope
