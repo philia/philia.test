@@ -102,6 +102,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
 let NERDTreeDirArrows = 1
 "let NERDTreeQuitOnOpen = 1
+"}}}
 " {{{ cscope
 if has('cscope')
     set cscopetag cscopeverbose
@@ -149,24 +150,85 @@ autocmd BufEnter * call LoadCscope()
 autocmd VimEnter * call LoadCscope()
 " }}}
 " {{{ TODO: local config
-" make sure this line is added as the first line before source this vimrc
-" let g:phrepopath='~/dev/var/github/philia.test'
-" let g:tempdir='/tmp'
-
+""" make sure this line is added as the first line before source this vimrc
+""" Config Zone start
+""let g:phrepopath='/Users/philia/repo/philia.test'
+""let g:tempdir='/tmp'
+""" Config Zone end, DO NOT MODIFY ANYTHING BELOW!!
+""
 """ Uncomment these lines to enable plugins and customized config
-" if !isdirectory(g:tempdir.'/vim.view')
-"     call mkdir(g:tempdir.'/vim.view')
-" endif
-" if !isdirectory(g:tempdir.'/vim.tmp')
-"     call mkdir(g:tempdir.'/vim.tmp')
-" endif
-" execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
-" execute 'source '.g:phrepopath.'/vimrc'
-" execute 'set viewdir='.g:tempdir.'/vim.view'
-" execute 'set dir='.g:tempdir.'/vim.tmp'
-
-" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
-" call pathogen#helptags()
-
-" RCS " Random select a default color scheme (in randcolor list)
+""if !isdirectory(g:tempdir.'/vim.view')
+""    call mkdir(g:tempdir.'/vim.view')
+""endif
+""if !isdirectory(g:tempdir.'/vim.tmp')
+""    call mkdir(g:tempdir.'/vim.tmp')
+""endif
+""
+""" Vundle default configurations
+""set nocompatible              " be iMproved, required
+""filetype off                  " required
+""
+""" set the runtime path to include Vundle and initialize
+""" set rtp+=~/mnt/philia.test/vimfiles/Vundle.vim
+""execute 'set rtp+='.g:phrepopath.'/vimfiles/Vundle.vim'
+""call vundle#begin()
+""" alternatively, pass a path where Vundle should install plugins
+"""call vundle#begin('~/some/path/here')
+""
+""" let Vundle manage Vundle, required
+""Plugin 'VundleVim/Vundle.vim'
+""
+""" The following are examples of different formats supported.
+""" Keep Plugin commands between vundle#begin/end.
+""" plugin on GitHub repo
+""Plugin 'tpope/vim-fugitive'
+""Plugin 'tpope/vim-surround'
+""Plugin 'edsono/vim-matchit'
+""Plugin 'Lokaltog/vim-easymotion'
+""Plugin 'kien/ctrlp.vim'
+""Plugin 'scrooloose/nerdtree'
+""Plugin 'bling/vim-airline'
+""Plugin 'flazz/vim-colorschemes'
+""
+"""" plugin from http://vim-scripts.org/vim/scripts.html
+"""Plugin 'L9'
+"""" Git plugin not hosted on GitHub
+"""Plugin 'git://git.wincent.com/command-t.git'
+"""" git repos on your local machine (i.e. when working on your own plugin)
+"""Plugin 'file:///home/gmarik/path/to/plugin'
+"""" The sparkup vim script is in a subdirectory of this repo called vim.
+"""" Pass the path to set the runtimepath properly.
+"""Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"""" Avoid a name conflict with L9
+"""Plugin 'user/L9', {'name': 'newL9'}
+""
+""" All of your Plugins must be added before the following line
+""call vundle#end()            " required
+""filetype plugin indent on    " required
+""" To ignore plugin indent changes, instead use:
+"""filetype plugin on
+"""
+""" Brief help
+""" :PluginList       - lists configured plugins
+""" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+""" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+""" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"""
+""" see :h vundle for more details or wiki for FAQ
+""" Put your non-Plugin stuff after this line
+""
+""" execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
+""execute 'source '.g:phrepopath.'/vimrc'
+""execute 'set viewdir='.g:tempdir.'/vim.view'
+""execute 'set dir='.g:tempdir.'/vim.tmp'
+""
+""" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
+""" call pathogen#helptags()
+""
+""if has("gui_running")
+""    set transparency=10
+""endif
+""
+""" DCS " Random select a default color scheme (in randcolor list)
+""colo monokai
 " }}}
