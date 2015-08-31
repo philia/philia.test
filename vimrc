@@ -72,9 +72,9 @@ endif
 " {{{ Key bindings
     inoremap jk <esc>
     inoremap kj <esc>
-    "   make < > shifts keep selection
-    vnoremap < <gv
-    vnoremap > >gv
+    ""   make < > shifts keep selection
+    "vnoremap < <gv
+    "vnoremap > >gv
     " Tab management
     " \e to open a new tab as the first one
     silent! nnoremap <unique> <silent> <Leader>e :0tabnew<CR>
