@@ -149,11 +149,11 @@ autocmd BufWinEnter * silent! loadview
 autocmd BufEnter * call LoadCscope()
 autocmd VimEnter * call LoadCscope()
 " }}}
-" {{{ TODO: local config
+""" {{{ TODO: local config
 """ make sure this line is added as the first line before source this vimrc
 """ Config Zone start
-""let g:phrepopath='/Users/philia/repo/philia.test'
-""let g:tempdir='/tmp'
+""let g:phrepopath='/Users/philia/Documents/repo/philia.test'
+""let g:tempdir='/Users/philia/Documents/tmp'
 """ Config Zone end, DO NOT MODIFY ANYTHING BELOW!!
 ""
 """ Uncomment these lines to enable plugins and customized config
@@ -216,19 +216,19 @@ autocmd VimEnter * call LoadCscope()
 """
 """ see :h vundle for more details or wiki for FAQ
 """ Put your non-Plugin stuff after this line
-""
+""""
 """ execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
 ""execute 'source '.g:phrepopath.'/vimrc'
 ""execute 'set viewdir='.g:tempdir.'/vim.view'
 ""execute 'set dir='.g:tempdir.'/vim.tmp'
-""
-""" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
-""" call pathogen#helptags()
-""
-""if has("gui_running")
-""    set transparency=10
-""endif
-""
-""" DCS " Random select a default color scheme (in randcolor list)
+""""
+""""" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
+""""" call pathogen#helptags()
+""""
+""""if has("gui_running")
+""""    set transparency=10
+""""endif
+""""
+""""" DCS " Random select a default color scheme (in randcolor list)
 ""colo monokai
-" }}}
+""" }}}
