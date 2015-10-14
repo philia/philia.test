@@ -12,6 +12,8 @@ alias ls="ls --color=auto --show-control-chars"
 alias ll="ls -alF --show-control-chars"
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
+alias wget="wget -c"
+
 alias cdm="cd ~/mnt"
 alias cdt="cd ~/mnt/tmp"
 alias cdv="cd ~/mnt/var"
