@@ -230,5 +230,5 @@ autocmd VimEnter * call LoadCscope()
 """"endif
 """"
 """"" DCS " Random select a default color scheme (in randcolor list)
-""colo monokai
+""colo molokai
 """ }}}
