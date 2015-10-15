@@ -20,6 +20,7 @@ alias cdv="cd ~/mnt/var"
 alias cdp="cd ~/mnt/var/github/philia.test"
 alias vi="vim"
 alias v="vim"
+alias g="git"
 #alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
 alias sysupd="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
 #/etc/hosts 104.224.158.111 bandwagon
