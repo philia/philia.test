@@ -66,9 +66,6 @@ if has("win32") && has("gui_running")
 else
 endif
 " }}}
-" {{{ Configure relativenumber for NerdTree:
-" bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
-" }}}
 " {{{ Key bindings
     inoremap jk <esc>
     inoremap kj <esc>
@@ -102,6 +99,10 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
 let NERDTreeDirArrows = 1
 "let NERDTreeQuitOnOpen = 1
+" Configure relativenumber for NerdTree:
+" bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
+" vim-airline to display full path of current file
+let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 "}}}
 " {{{ cscope
 if has('cscope')
@@ -207,7 +208,7 @@ autocmd VimEnter * call LoadCscope()
 ""filetype plugin indent on    " required
 """ To ignore plugin indent changes, instead use:
 """filetype plugin on
-"""
+""
 """ Brief help
 """ :PluginList       - lists configured plugins
 """ :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -216,15 +217,7 @@ autocmd VimEnter * call LoadCscope()
 """
 """ see :h vundle for more details or wiki for FAQ
 """ Put your non-Plugin stuff after this line
-""""
-""" execute 'source '.g:phrepopath.'/vimfiles/bundle/vim-pathogen/autoload/pathogen.vim'
-""execute 'source '.g:phrepopath.'/vimrc'
-""execute 'set viewdir='.g:tempdir.'/vim.view'
-""execute 'set dir='.g:tempdir.'/vim.tmp'
-""""
-""""" call pathogen#infect(g:phrepopath.'/vimfiles/bundle/{}')
-""""" call pathogen#helptags()
-""""
+""
 """"if has("gui_running")
 """"    set transparency=10
 """"endif
