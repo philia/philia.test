@@ -54,7 +54,7 @@ if has("win32") && has("gui_running")
     set columns=110
     " maximize the window
     au GUIEnter * simalt ~X
-    " hime menu bar
+    " hide menu bar
     set guioptions -=m
     " hide toolbar
     set guioptions -=T
