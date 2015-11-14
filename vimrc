@@ -49,11 +49,11 @@
 " }}}
 " {{{ Identifies gvim
 if has("win32") && has("gui_running")
-    " winpos 840 0
-    " set lines=62
-    " set columns=110
+    winpos 840 0
+    set lines=62
+    set columns=110
     " maximize the window
-    " au GUIEnter * simalt ~X
+    au GUIEnter * simalt ~X
     " hide menu bar
     set guioptions -=m
     " hide toolbar
@@ -223,6 +223,7 @@ autocmd VimEnter * call LoadCscope()
 """"    set transparency=10
 """"endif
 """"
+""execute "source ".g:phrepopath."/vimrc"
 """"" DCS " Random select a default color scheme (in randcolor list)
 ""colo molokai
 """ }}}
