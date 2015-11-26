@@ -24,7 +24,8 @@ alias g="git"
 #alias tm="tmux -2 -f ~/work/var/github/philia.test/tmux.conf attach"
 alias sysupd="apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade"
 #/etc/hosts 104.224.158.111 bandwagon
-alias sshbandwagon='ssh root@104.224.158.111 -p29472'
+alias ssh.bandwagon='ssh root@104.224.158.111 -p29472'
+alias mosh.bandwagon='mosh --ssh="ssh -p29472" root@104.224.158.111'
 
 set -o vi
 
