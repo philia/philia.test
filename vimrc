@@ -190,7 +190,6 @@ autocmd VimEnter * call LoadCscope()
 ""Plugin 'scrooloose/nerdtree'
 ""Plugin 'bling/vim-airline'
 ""Plugin 'flazz/vim-colorschemes'
-""Plugin 'ervandew/supertab'
 ""
 """" plugin from http://vim-scripts.org/vim/scripts.html
 """Plugin 'L9'
