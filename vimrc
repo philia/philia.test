@@ -147,8 +147,8 @@ com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe 
 " {{{ Startup commands
 autocmd BufWinLeave * silent! mkview
 autocmd BufWinEnter * silent! loadview
-autocmd BufEnter * call LoadCscope()
-autocmd VimEnter * call LoadCscope()
+"autocmd BufEnter * call LoadCscope()
+"autocmd VimEnter * call LoadCscope()
 " }}}
 """ {{{ TODO: local config
 """ make sure this line is added as the first line before source this vimrc
