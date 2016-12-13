@@ -98,7 +98,7 @@ endif
 let g:ctrlp_clear_cache_on_exit = 0
 let g:solarized_termcolors=256
 let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen = 1
+" let NERDTreeQuitOnOpen = 1
 " Configure relativenumber for NerdTree:
 " bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
 " vim-airline to display full path of current file
