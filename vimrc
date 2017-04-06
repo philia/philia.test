@@ -170,6 +170,7 @@ autocmd BufWinEnter * silent! loadview
 ""filetype off                  " required
 ""
 """ set the runtime path to include Vundle and initialize
+""set shell=/bin/sh
 """ set rtp+=~/mnt/philia.test/vimfiles/Vundle.vim
 ""execute 'set rtp+='.g:phrepopath.'/vimfiles/Vundle.vim'
 ""call vundle#begin()
@@ -184,7 +185,7 @@ autocmd BufWinEnter * silent! loadview
 """ plugin on GitHub repo
 ""Plugin 'tpope/vim-fugitive'
 ""Plugin 'tpope/vim-surround'
-""Plugin 'edsono/vim-matchit'
+""Plugin 'bumaociyuan/vim-matchit'
 ""Plugin 'Lokaltog/vim-easymotion'
 ""Plugin 'kien/ctrlp.vim'
 ""Plugin 'scrooloose/nerdtree'
