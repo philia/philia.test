@@ -192,6 +192,7 @@ autocmd BufWinEnter * silent! loadview
 ""Plugin 'bling/vim-airline'
 ""Plugin 'flazz/vim-colorschemes'
 ""Plugin 'airblade/vim-gitgutter'
+""Plugin 'luochen1990/rainbow'
 ""
 """" plugin from http://vim-scripts.org/vim/scripts.html
 """Plugin 'L9'
