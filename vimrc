@@ -10,6 +10,7 @@
     " set number
     set relativenumber
     set nobackup
+    set noswapfile
     set ignorecase
     set smartcase
     set incsearch
