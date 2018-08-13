@@ -39,5 +39,4 @@ attrcolor b ".I"
 # Change the hardstatus settings to give an window list at the bottom of the
 # screen with the current window highlighted
 hardstatus alwayslastline 
-#hardstatus string '%{= kG}%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}'
-hardstatus string '%{= kG}%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%=%{= kw}%+w %=%d %M %0c %{g}%H%{-} %{g}'
+hardstatus string '%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w %=%d %M %0c %{g}%H%{-}'
