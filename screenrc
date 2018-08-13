@@ -1,2 +1,43 @@
-escape ^Aa
-caption always "%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w %=%d %M %0c %{g}%H%{-}" 
+# DEFAULT
+shell                   -bash
+autodetach              on
+defutf8                 on
+startup_message         off
+nethack                 on
+
+activity                "activity in %n (%t)"
+bell_msg                "bell in %n (%t)"
+defhstatus              "screen: ^En (^Et)"
+shelltitle              "$ |sh:"
+
+vbell                   on
+vbell_msg               "WHAT ??!!"
+vbellwait               1
+
+msgminwait              1
+msgwait                 3
+
+windowlist title        " Num%+3=| Fl%+3=| Name"
+windowlist string       " %3n%+3=| %f%+3=| %t"
+
+# STATUSPANEL
+hardstatus alwayslastline
+hardstatus string '%{= kY}[ %{R}%H %{Y}][ %{g}load[%l] %{Y}][ %{B}%d/%m/%Y %c %{Y}][ %{r}%=%?%-w%?(%n%f %t)%?%+w%? %{Y}]'
+
+# CUSTOMIZED
+escape ^\\
+# We'd like to scroll in an xterm please
+defscrollback 1024
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "/usr/bin/pbcopy < /tmp/screen-exchange"'
+
+# http://superuser.com/questions/126606/how-to-get-mac-os-x-terminal-app-and-screen-vim-scrolling-to-play-nice/316900#316900
+termcapinfo xterm-256color|xterm-color|xterm|xterms|xs|rxvt ti@:te@
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Change the hardstatus settings to give an window list at the bottom of the
+# screen with the current window highlighted
+hardstatus alwayslastline 
+#hardstatus string '%{= kG}%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}'
+hardstatus string '%{= kG}%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%=%{= kw}%+w %=%d %M %0c %{g}%H%{-} %{g}'

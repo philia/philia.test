@@ -230,4 +230,5 @@ autocmd BufWinEnter * silent! loadview
 ""execute "source ".g:phrepopath."/vimrc"
 """"" DCS " Random select a default color scheme (in randcolor list)
 ""colo molokai
+""highlight Visual cterm=reverse ctermbg=NONE
 """ }}}
