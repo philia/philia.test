@@ -6,7 +6,7 @@
     endif
 
     set nocompatible
-    set guifont=Consolas
+    " set guifont=Consolas
     " set number
     set relativenumber
     set nobackup
@@ -59,12 +59,18 @@ if has("win32") && has("gui_running")
     set guioptions -=m
     " hide toolbar
     set guioptions -=T
-    " hide right scrollbar
+    " hide right-hand scrollbar
     set guioptions -=r
+    " hide left-hand scrollbar
+    set guioptions -=L
 
     let g:pathogen_disabled = []
     call add(g:pathogen_disabled, 'DBGPavim')
 else
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
 endif
 " }}}
 " {{{ Key bindings
