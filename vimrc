@@ -178,8 +178,8 @@ autocmd BufWinEnter * silent! loadview
 ""
 """ set the runtime path to include Vundle and initialize
 ""set shell=/bin/sh
-""" set rtp+=~/mnt/philia.test/vimfiles/Vundle.vim
-""execute 'set rtp+='.g:phrepopath.'/vimfiles/Vundle.vim'
+""" set rtp+=~/mnt/philia.test/modules/Vundle.vim
+""execute 'set rtp+='.g:phrepopath.'/modules/Vundle.vim'
 ""call vundle#begin()
 """ alternatively, pass a path where Vundle should install plugins
 """call vundle#begin('~/some/path/here')
