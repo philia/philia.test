@@ -1,3 +1,6 @@
 [submodule "modules/tmux-config"]
 	path = modules/tmux-config
 	url = https://github.com/samoshkin/tmux-config
+[submodule "modules/Vundle.vim"]
+	path = modules/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
