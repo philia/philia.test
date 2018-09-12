@@ -67,6 +67,7 @@ alias rc.reload="source ${LOCAL_RC_CONFIG}"
 
 alias cdm="cd ${LOCAL_MNT_PATH}"
 alias cdt="cd ${LOCAL_MNT_PATH}/tmp"
+alias cdws="cd ${LOCAL_MNT_PATH}/workspace && ls"
 alias cdmy="cd ${LOCAL_PHREPO_PATH}"
 alias up=_go_up_multiple_directory_levels
 
