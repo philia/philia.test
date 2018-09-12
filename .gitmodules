@@ -1,15 +1,3 @@
-[submodule "vimfiles/Vundle.vim"]
-	path = modules/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim
-[submodule "vimfiles/oh-my-zsh"]
-	path = modules/oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh
 [submodule "modules/tmux-config"]
 	path = modules/tmux-config
 	url = https://github.com/samoshkin/tmux-config
-[submodule "modules/tmux"]
-	path = modules/tmux
-	url = https://github.com/tmux/tmux
-[submodule "modules/vim"]
-	path = modules/vim
-	url = https://github.com/vim/vim
