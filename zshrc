@@ -56,6 +56,13 @@ alias g='git'
 alias z='zsh'
 alias i=echo "$(whoami)@$(hostname)"
 alias ll="ls -al"
+alias ip='ipython'
+alias xv='xargs -o vim'
+alias pbc='pbcopy'
+alias pbca='ansifilter | pbcopy'
+alias pbp='pbpaste'
+alias sedn=_sed_print_line
+alias ncp='nc localhost 11988'
 alias rc.reload="source ${LOCAL_RC_CONFIG}"
 
 alias cdm="cd ${LOCAL_MNT_PATH}"
