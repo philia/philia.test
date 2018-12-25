@@ -100,6 +100,9 @@ endif
     silent! nnoremap <unique> <Leader>fdi :set foldmethod=indent<CR>
     " \fdm to set fold method to manual
     silent! nnoremap <unique> <Leader>fdm :set foldmethod=manual<CR>
+
+    ",tt to toggle vimwiki todo
+    nmap <Leader>tt <Plug>VimwikiToggleListItem<CR>
 " }}}
 " {{{ Plugins configurations
 let g:ctrlp_clear_cache_on_exit = 0
@@ -201,6 +204,7 @@ autocmd BufWinEnter * silent! loadview
 ""Plugin 'airblade/vim-gitgutter'
 ""Plugin 'luochen1990/rainbow'
 ""Plugin 'godlygeek/tabular'
+""Plugin 'vimwiki/vimwiki'
 ""
 """" plugin from http://vim-scripts.org/vim/scripts.html
 """Plugin 'L9'
