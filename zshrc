@@ -13,6 +13,7 @@ export TERM=xterm-256color
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+bindkey "^R" history-incremental-search-backward
 
 # Better searching in command mode
 bindkey -M vicmd '?' history-incremental-search-backward
