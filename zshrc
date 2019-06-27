@@ -76,8 +76,8 @@ alias pbca='ansifilter | pbcopy'
 alias pbp='pbpaste'
 alias sedn=_sed_print_line
 alias ncp='nc localhost 11988'
-alias rc.reload="source ${LOCAL_RC_CONFIG}"
-alias rr="source ${LOCAL_RC_CONFIG}"
+alias rc.reload="source ${LOCAL_RC_CONFIG}" && export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+alias rr=rc.reload
 
 alias cdm="cd ${LOCAL_MNT_PATH}"
 alias cdt="cd ${LOCAL_MNT_PATH}/tmp"
