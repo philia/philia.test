@@ -113,6 +113,10 @@ let NERDTreeDirArrows = 1
 " bundle/nerdtree/ftplugin/nerdtree.vim: setlocal relativenumber (with this line and this line only)
 " vim-airline to display full path of current file
 let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+let g:vimwiki_global_ext = 0
+let g:vimwiki_ext2syntax = {}
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+autocmd FileType vimwiki set syntax=markdown
 "}}}
 " {{{ cscope
 if has('cscope')
