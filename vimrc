@@ -164,6 +164,19 @@ autocmd BufWinEnter * silent! loadview
 "autocmd BufEnter * call LoadCscope()
 "autocmd VimEnter * call LoadCscope()
 " }}}
+" {{{ Custom Functions
+fu! ToggleCurline ()
+  if &cursorline && &cursorcolumn
+    set nocursorline
+    set nocursorcolumn
+  else
+    set cursorline
+    set cursorcolumn
+  endif
+endfunction
+
+map <silent><leader>cl :call ToggleCurline()<CR>
+" }}}
 """ {{{ TODO: local config
 """ make sure this line is added as the first line before source this vimrc
 """ Config Zone start
