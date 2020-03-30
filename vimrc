@@ -1,5 +1,6 @@
 " {{{ Global configuration
     syntax on
+    filetype on
 
     if has("autocmd")
         filetype plugin indent on
@@ -116,6 +117,7 @@ let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts
 let g:vimwiki_global_ext = 0
 let g:vimwiki_ext2syntax = {}
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
 autocmd FileType vimwiki set filetype=markdown
 "}}}
 " {{{ cscope
@@ -159,8 +161,8 @@ com! RCS exec 'let randcolor=[
 com! RRCS exec 'let mycolors=split(globpath(&rtp,"**/colors/*.vim"),"\n") | exe "so " . mycolors[localtime() % len(mycolors)] | unlet mycolors'
 " }}}
 " {{{ Startup commands
-autocmd BufWinLeave * silent! mkview
-autocmd BufWinEnter * silent! loadview
+"autocmd BufWinLeave * silent! mkview
+"autocmd BufWinEnter * silent! loadview
 "autocmd BufEnter * call LoadCscope()
 "autocmd VimEnter * call LoadCscope()
 " }}}
