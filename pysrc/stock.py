@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 
-with open('config') as conf:
+with open('config.local') as conf:
     token = conf.readline()
     s_code = conf.readline()
 
