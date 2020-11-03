@@ -212,7 +212,6 @@ map <silent><leader>cl :call ToggleCurline()<CR>
 """ The following are examples of different formats supported.
 """ Keep Plugin commands between vundle#begin/end.
 """ plugin on GitHub repo
-""Plugin 'tpope/vim-fugitive'
 ""Plugin 'tpope/vim-surround'
 ""Plugin 'bumaociyuan/vim-matchit'
 ""Plugin 'Lokaltog/vim-easymotion'
@@ -220,7 +219,6 @@ map <silent><leader>cl :call ToggleCurline()<CR>
 ""Plugin 'scrooloose/nerdtree'
 ""Plugin 'bling/vim-airline'
 ""Plugin 'flazz/vim-colorschemes'
-""Plugin 'airblade/vim-gitgutter'
 ""Plugin 'luochen1990/rainbow'
 ""Plugin 'godlygeek/tabular'
 ""Plugin 'vimwiki/vimwiki'
