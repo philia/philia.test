@@ -3,11 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 
-#token=input('token:')
-#s_code=input('stock code:')
-
-token=''
-s_code='600570.SH'
+with open('config') as conf:
+    token = conf.readline()
+    s_code = conf.readline()
 
 ts.set_token(token)
 pro = ts.pro_api()
