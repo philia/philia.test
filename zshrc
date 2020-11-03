@@ -84,6 +84,8 @@ alias cdm="cd ${LOCAL_MNT_PATH}"
 alias cdt="cd ${LOCAL_MNT_PATH}/tmp"
 alias cdws="cd ${LOCAL_MNT_PATH}/workspace && ls"
 alias cdmy="cd ${LOCAL_PHREPO_PATH}"
-alias up=_go_up_multiple_directory_levels
+
+alias tm='tmux new-session -d -s 0 -n def \; new-window -t 0:2 -n ws \; select-window -t 0:1 \; attach \;'
+alias tma='tmux attach'
 
 # Aliases }}}
