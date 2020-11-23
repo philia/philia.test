@@ -5,6 +5,52 @@ import datetime as dt
 from talib import abstract
 import backtrader as bt
 
+class SimpleSMAStrategy(bt.Strategy):
+    params = (
+        ('maperiod', 15),
+    )
+
+    def log(self, txt, dt=None, doprint=False):
+        if doprint:
+            dt = dt or self.datas[0].datetime.date(0)
+            print('%s, %s' % (dt.isoformat(), txt))
+
+    def __init__(self):
+        self.dataclose = self.datas[0].close
+        self.order = None
+        self.sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.maperiod)
+
+    def next(self):
+        if self.order:
+            return
+        if not self.position:
+            if self.dataclose[0] > self.sma[0]:
+                self.buy()
+        else:
+            if self.dataclose[0] < self.sma[0]:
+                self.sell()
+
+    def stop(self):
+        self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=True)
+
+
+class SimpleHighLowStrategy(bt.Strategy):
+    def __init__(self):
+        self.dataclose = self.datas[0].close
+        self.datahigh = self.datas[0].high
+        self.datalow = self.datas[0].low
+        self.order = None
+
+    def next(self):
+        if self.order:
+            return
+        if not self.position:
+            if self.dataclose[0] > self.datahigh[-1]:
+                self.buy()
+        else:
+            if self.dataclose[0] < self.datalow[-1]:
+                self.sell()
+
 class TestStrategy(bt.Strategy):
     params = (
         ('exitbars', 5),
@@ -95,15 +141,15 @@ if __name__ == '__main__':
         s_code = conf.readline().strip()
 
     #dt_end = dt.datetime.today().strftime("%Y%m%d")
-    #dt_end = (dt.datetime.today() - dt.timedelta(days=1)).strftime("%Y%m%d")
-    dt_end = '2020-11-11'
+    dt_start = (dt.datetime.today() - dt.timedelta(days=365)).strftime("%Y%m%d")
+    dt_end = dt.datetime.today().strftime("%Y%m%d")
 
     ts.set_token(token)
     pro = ts.pro_api()
     #df = pro.daily(ts_code=s_code, start_date='20200101', end_date='20180718')
 
     data = pro.namechange(ts_code=s_code, fields='name,start_date,end_date,change_reason')
-    df = ts.pro_bar(ts_code=s_code, adj='qfq', start_date='20200101', end_date=dt_end)
+    df = ts.pro_bar(ts_code=s_code, adj='qfq', start_date=dt_start, end_date=dt_end)
 
     # transform for mplfinance OHLC format
     df.index = df.trade_date
@@ -119,9 +165,12 @@ if __name__ == '__main__':
 
     # backtrader
     cerebro = bt.Cerebro()
-    #cerebro.addstrategy(TestStrategy)
-    cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
     cerebro.addsizer(bt.sizers.FixedSize, stake=100)
+    #cerebro.addstrategy(TestStrategy)
+    #cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
+
+    #cerebro.addstrategy(SimpleSMAStrategy)
+    cerebro.optstrategy(SimpleSMAStrategy, maperiod=range(10, 31))
 
     feed = bt.feeds.PandasData(dataname=df)
     cerebro.adddata(feed)
@@ -129,7 +178,8 @@ if __name__ == '__main__':
     cerebro.broker.setcash(100000.0)
     cerebro.broker.setcommission(commission=0.003)
 
-    #print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
-    cerebro.run()
-    #print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
-    #cerebro.plot()
+    #print('[√] Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    results = cerebro.run(maxcpus=1, optreturn=False)
+    #print('Max Value: %.2f' % max(results[0] 
+    #print('[√] Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    cerebro.plot()
