@@ -2,8 +2,12 @@ import tushare as ts
 import pandas as pd  
 import mplfinance as mpf
 import datetime as dt
-from talib import abstract
+import talib as ta
 import backtrader as bt
+import numpy as np
+
+from talib import abstract
+from backtrader import strategies
 
 class SimpleSMAStrategy(bt.Strategy):
     params = (
@@ -148,7 +152,7 @@ if __name__ == '__main__':
     pro = ts.pro_api()
     #df = pro.daily(ts_code=s_code, start_date='20200101', end_date='20180718')
 
-    data = pro.namechange(ts_code=s_code, fields='name,start_date,end_date,change_reason')
+    #data = pro.namechange(ts_code=s_code, fields='name,start_date,end_date,change_reason')
     df = ts.pro_bar(ts_code=s_code, adj='qfq', start_date=dt_start, end_date=dt_end)
 
     # transform for mplfinance OHLC format
@@ -158,19 +162,19 @@ if __name__ == '__main__':
     df.columns = ['open', 'high', 'low', 'close', 'volume']
     df.sort_index(inplace=True)
 
-    # plot with mplfinance
-    #index1 = mpf.make_addplot(abstract.MACDEXT(df), panel = 2, ylabel = 'MACD')
-    #index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
-    #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10, 20, 30), title=data['name'][0] + '.' + s_code, addplot = [index1, index2])
-
     # backtrader
     cerebro = bt.Cerebro()
-    cerebro.addsizer(bt.sizers.FixedSize, stake=100)
+    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+
+    cerebro.addstrategy(strategies.SMA_CrossOver)
+
     #cerebro.addstrategy(TestStrategy)
     #cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
 
+    #cerebro.addstrategy(SimpleHighLowStrategy)
+
     #cerebro.addstrategy(SimpleSMAStrategy)
-    cerebro.optstrategy(SimpleSMAStrategy, maperiod=range(10, 31))
+    #cerebro.optstrategy(SimpleSMAStrategy, maperiod=range(10, 31))
 
     feed = bt.feeds.PandasData(dataname=df)
     cerebro.adddata(feed)
@@ -179,7 +183,30 @@ if __name__ == '__main__':
     cerebro.broker.setcommission(commission=0.003)
 
     #print('[√] Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
-    results = cerebro.run(maxcpus=1, optreturn=False)
+    #results = cerebro.run(maxcpus=1, optreturn=False)
+    cerebro.run()
     #print('Max Value: %.2f' % max(results[0] 
     #print('[√] Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+
+    # Pattern Recognition
+    candle_names = ta.get_function_groups()['Pattern Recognition']
+    for candle in candle_names:
+        df[candle] = getattr(ta, candle)(df['open'], df['high'], df['low'], df['close'])
+    
+    patterns = np.array([])
+    for index, row in df.iterrows():
+        recoganized_patterns = 0
+        for candle in candle_names:
+            if (row[candle] != 0):
+                recoganized_patterns += 1
+        patterns = np.append(patterns, recoganized_patterns)
+    df['pat'] = patterns.astype(int)
+
+    # Plotting
     cerebro.plot()
+
+    ## plot with mplfinance
+    #index1 = mpf.make_addplot(abstract.MACDEXT(df), panel = 2, ylabel = 'MACD')
+    ##index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
+    ##mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10), title=data['name'][0] + '.' + s_code, addplot = [index1])
+    #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10), title=s_code, addplot = [index1])
