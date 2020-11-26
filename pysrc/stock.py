@@ -9,52 +9,6 @@ import numpy as np
 from talib import abstract
 from backtrader import strategies
 
-class SimpleSMAStrategy(bt.Strategy):
-    params = (
-        ('maperiod', 15),
-    )
-
-    def log(self, txt, dt=None, doprint=False):
-        if doprint:
-            dt = dt or self.datas[0].datetime.date(0)
-            print('%s, %s' % (dt.isoformat(), txt))
-
-    def __init__(self):
-        self.dataclose = self.datas[0].close
-        self.order = None
-        self.sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.maperiod)
-
-    def next(self):
-        if self.order:
-            return
-        if not self.position:
-            if self.dataclose[0] > self.sma[0]:
-                self.buy()
-        else:
-            if self.dataclose[0] < self.sma[0]:
-                self.sell()
-
-    def stop(self):
-        self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=True)
-
-
-class SimpleHighLowStrategy(bt.Strategy):
-    def __init__(self):
-        self.dataclose = self.datas[0].close
-        self.datahigh = self.datas[0].high
-        self.datalow = self.datas[0].low
-        self.order = None
-
-    def next(self):
-        if self.order:
-            return
-        if not self.position:
-            if self.dataclose[0] > self.datahigh[-1]:
-                self.buy()
-        else:
-            if self.dataclose[0] < self.datalow[-1]:
-                self.sell()
-
 class TestStrategy(bt.Strategy):
     params = (
         ('exitbars', 5),
@@ -70,6 +24,7 @@ class TestStrategy(bt.Strategy):
     def __init__(self):
         # Keep a reference to the "close" line in the data[0] dataseries
         self.dataclose = self.datas[0].close
+        self.dataopen = self.datas[0].open
         # To keep track of pending orders and buy price/commission
         self.order = None
         self.buyprice = None
@@ -108,11 +63,12 @@ class TestStrategy(bt.Strategy):
     def notify_trade(self, trade):
         if not trade.isclosed:
             return
-        self.log('OPERATION PROFIT, GROSS: %.2f, NET: %.2f' % (trade.pnl, trade.pnlcomm))
+        self.log('[OPERATION PROFIT] GROSS: %.2f, NET: %.2f, PRICE: %.2f, VALUE: %.2f, SIZE: %.2f' % (trade.pnl, trade.pnlcomm, trade.price, trade.value, trade.size))
+        self.log('[PORTFOLIO] CASH: %.2f, VALUE: %.2f' % (self.broker.get_cash(), self.broker.get_value()))
 
     def next(self):
         # Simply log the closing price of the series from the reference
-        self.log('Close, %.2f' % self.dataclose[0])
+        self.log('Open: %.2f, Close: %.2f' % (self.dataopen[0], self.dataclose[0]))
 
         # Check if an order is pending ... If yes we cannot send a 2nd one
         if self.order:
@@ -125,7 +81,7 @@ class TestStrategy(bt.Strategy):
             #if self.dataclose[0] < self.dataclose[-1] and self.dataclose[-1] < self.dataclose[-2]:
             if self.dataclose[0] > self.sma[0]:
                 self.log('BUY CREATE, %.2f' % self.dataclose[0])
-                self.buy()
+                self.buy(price=self.dataclose[0])
         else:
             # Already in the market ... we might sell
             #if len(self) >= (self.bar_executed + self.params.exitbars):
@@ -133,19 +89,69 @@ class TestStrategy(bt.Strategy):
                 self.log('SELL CREATE, %.2f' % self.dataclose[0])
 
                 # Keep track of the created order to avoid a 2nd order
-                self.order = self.sell()
+                self.order = self.sell(price=self.dataclose[0])
 
     def stop(self):
-        self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=True)
+        self.portfolio = self.broker.getvalue()
+        self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=False)
+
+def backtester(dfiter):
+    df = dfiter['data']
+    name = dfiter['name']
+    # backtrader
+    cerebro = bt.Cerebro()
+    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+
+    #cerebro.addstrategy(TestStrategy)
+    cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
+
+    feed = bt.feeds.PandasData(dataname=df)
+    cerebro.adddata(feed, name)
+
+    cerebro.broker.setcash(100000.0)
+    cerebro.broker.setcommission(commission=0.003)
+
+    #print('[%s] Starting with: %.2f' % (name, cerebro.broker.getvalue()))
+    #cerebro.run(maxcpus=1)
+    #print('[%s] Final Value: %.2f' % (name, cerebro.broker.getvalue()))
+    strats = cerebro.run(maxcpus=1, optreturn=False)
+
+    ## Pattern Recognition
+    #candle_names = ta.get_function_groups()['Pattern Recognition']
+    #for candle in candle_names:
+    #    df[candle] = getattr(ta, candle)(df['open'], df['high'], df['low'], df['close'])
+    #
+    #patterns = np.array([])
+    #for index, row in df.iterrows():
+    #    recoganized_patterns = 0
+    #    for candle in candle_names:
+    #        if (row[candle] != 0):
+    #            recoganized_patterns += 1
+    #    patterns = np.append(patterns, recoganized_patterns)
+    #df['pat'] = patterns.astype(int)
+
+    # Plotting
+    #cerebro.plot()
+
+    ### plot with mplfinance
+    #index0 = mpf.make_addplot(abstract.BBANDS(df), panel = 0)
+    #index1 = mpf.make_addplot(abstract.MACDEXT(df), panel = 2, ylabel = 'MACD')
+    #index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
+    #index3 = mpf.make_addplot(abstract.STOCHRSI(df), panel = 4, ylabel = 'STOCHRSI')
+    #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10, 20), title=s_code, addplot = [index0, index1, index2, index3])
+    return strats
 
 if __name__ == '__main__':
 
-    with open('config.local') as conf:
+    with open('token.local') as conf:
         token = conf.readline().strip()
-        s_code = conf.readline().strip()
+    s_codes = []
+    with open('scode.local') as conf:
+        for line in conf:
+            s_codes.append(line.strip().split(','))
 
     #dt_end = dt.datetime.today().strftime("%Y%m%d")
-    dt_start = (dt.datetime.today() - dt.timedelta(days=365)).strftime("%Y%m%d")
+    dt_start = (dt.datetime.today() - dt.timedelta(days=180)).strftime("%Y%m%d")
     dt_end = dt.datetime.today().strftime("%Y%m%d")
 
     ts.set_token(token)
@@ -153,60 +159,30 @@ if __name__ == '__main__':
     #df = pro.daily(ts_code=s_code, start_date='20200101', end_date='20180718')
 
     #data = pro.namechange(ts_code=s_code, fields='name,start_date,end_date,change_reason')
-    df = ts.pro_bar(ts_code=s_code, adj='qfq', start_date=dt_start, end_date=dt_end)
+    dfs = []
+    for s_code in s_codes:
+        dfs.append({ 'name': s_code[1], 'data': ts.pro_bar(ts_code=s_code[0], adj='qfq', start_date=dt_start, end_date=dt_end)} )
 
     # transform for mplfinance OHLC format
-    df.index = df.trade_date
-    df = df.rename(index=pd.Timestamp)
-    df.drop(columns=['ts_code', 'trade_date', 'pre_close', 'change', 'pct_chg', 'amount'], inplace=True)
-    df.columns = ['open', 'high', 'low', 'close', 'volume']
-    df.sort_index(inplace=True)
+    strats = []
+    for dfmap in dfs:
+        df = dfmap['data']
+        df.index = df.trade_date
+        df = df.rename(index=pd.Timestamp)
+        df.drop(columns=['ts_code', 'trade_date', 'pre_close', 'change', 'pct_chg', 'amount'], inplace=True)
+        df.columns = ['open', 'high', 'low', 'close', 'volume']
+        df.sort_index(inplace=True)
+        dfmap['data'] = df
 
-    # backtrader
-    cerebro = bt.Cerebro()
-    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+        strats.append({'name': dfmap['name'], 'ret': backtester(dfmap)})
 
-    cerebro.addstrategy(strategies.SMA_CrossOver)
-
-    #cerebro.addstrategy(TestStrategy)
-    #cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
-
-    #cerebro.addstrategy(SimpleHighLowStrategy)
-
-    #cerebro.addstrategy(SimpleSMAStrategy)
-    #cerebro.optstrategy(SimpleSMAStrategy, maperiod=range(10, 31))
-
-    feed = bt.feeds.PandasData(dataname=df)
-    cerebro.adddata(feed)
-
-    cerebro.broker.setcash(100000.0)
-    cerebro.broker.setcommission(commission=0.003)
-
-    #print('[√] Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
-    #results = cerebro.run(maxcpus=1, optreturn=False)
-    cerebro.run()
-    #print('Max Value: %.2f' % max(results[0] 
-    #print('[√] Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
-
-    # Pattern Recognition
-    candle_names = ta.get_function_groups()['Pattern Recognition']
-    for candle in candle_names:
-        df[candle] = getattr(ta, candle)(df['open'], df['high'], df['low'], df['close'])
-    
-    patterns = np.array([])
-    for index, row in df.iterrows():
-        recoganized_patterns = 0
-        for candle in candle_names:
-            if (row[candle] != 0):
-                recoganized_patterns += 1
-        patterns = np.append(patterns, recoganized_patterns)
-    df['pat'] = patterns.astype(int)
-
-    # Plotting
-    cerebro.plot()
-
-    ## plot with mplfinance
-    #index1 = mpf.make_addplot(abstract.MACDEXT(df), panel = 2, ylabel = 'MACD')
-    ##index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
-    ##mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10), title=data['name'][0] + '.' + s_code, addplot = [index1])
-    #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10), title=s_code, addplot = [index1])
+    for st in strats:
+        name = st['name']
+        mp_val = -1
+        mp_maperiod = 0
+        for ret in st['ret']:
+            final_port_value = ret[0].portfolio
+            if (mp_val < final_port_value):
+                mp_val = final_port_value
+                mp_maperiod = ret[0].p.maperiod
+        print('[%s] Max Portfolio Value: %.2f with MA: %d' % (name, mp_val, mp_maperiod))
