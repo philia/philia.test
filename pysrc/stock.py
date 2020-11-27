@@ -38,13 +38,15 @@ class MAStrategy(bt.Strategy):
         self.trade_dates = []
         self.sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.maperiod)
 
-        bt.indicators.ExponentialMovingAverage(self.datas[0], period=self.params.maperiod)
-        bt.indicators.WeightedMovingAverage(self.datas[0], period=self.params.maperiod)
-        bt.indicators.StochasticSlow(self.datas[0])
         bt.indicators.MACDHisto(self.datas[0])
         rsi = bt.indicators.RSI(self.datas[0])
-        bt.indicators.SmoothedMovingAverage(rsi, period=self.params.maperiod)
-        bt.indicators.ATR(self.datas[0], plot=False)
+        #bt.indicators.SmoothedMovingAverage(rsi, period=self.params.maperiod)
+        #bt.indicators.ExponentialMovingAverage(self.datas[0], period=self.params.maperiod)
+        #bt.indicators.WeightedMovingAverage(self.datas[0], period=self.params.maperiod)
+        bt.indicators.StochasticSlow(self.datas[0])
+        #bt.indicators.ATR(self.datas[0], plot=False)
+        bt.indicators.BBands(self.datas[0])
+        bt.indicators.WilliamsR(self.datas[0])
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
