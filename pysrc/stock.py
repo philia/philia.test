@@ -1,6 +1,5 @@
 import tushare as ts
 import pandas as pd  
-import mplfinance as mpf
 import datetime as dt
 import talib as ta
 import backtrader as bt
@@ -10,6 +9,10 @@ from talib import abstract
 from backtrader import strategies
 
 class TestStrategy(bt.Strategy):
+    def stop(self):
+        print("TestStrategy executed")
+
+class MAStrategy(bt.Strategy):
     params = (
         ('exitbars', 5),
         ('maperiod', 15),
@@ -95,34 +98,67 @@ class TestStrategy(bt.Strategy):
         self.portfolio = self.broker.getvalue()
         self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=False)
 
-def backtester(dfiter):
+def get_cerebro(df, name):
+    # initialize backtrader
+    cerebro = bt.Cerebro()
+    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+
+    feed = bt.feeds.PandasData(dataname=df)
+    cerebro.adddata(feed, name)
+
+    cerebro.broker.setcash(initial_portfolio)
+    cerebro.broker.setcommission(commission=0.003)
+
+    return cerebro
+
+def optimize_strategy(dfiter):
     df = dfiter['data']
     name = dfiter['name']
-    # backtrader
-    cerebro = bt.Cerebro()
-    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+    strategy = dfiter['strategy']   # This is the strategy we want to optimize against
 
-    #cerebro.addstrategy(TestStrategy)
-    cerebro.optstrategy(TestStrategy, maperiod=range(10, 31))
+    cerebro = get_cerebro(df, name)
 
-    feed = bt.feeds.PandasData(dataname=df)
-    cerebro.adddata(feed, name)
+    if strategy == 'MAStrategy':
+        cerebro.optstrategy(eval(strategy), maperiod=range(10, 31))
+    else:
+        cerebro.addstrategy(TestStrategy)
 
-    cerebro.broker.setcash(initial_portfolio)
-    cerebro.broker.setcommission(commission=0.003)
+    st = cerebro.run(maxcpus=1, optreturn=False)
 
-    return cerebro.run(maxcpus=1, optreturn=False)
+    if strategy == 'MAStrategy':
+        # Get optimized roi and maperiod
+        mp_val = -1
+        mp_maperiod = 0
+        for ret in st:
+            final_port_value = ret[0].portfolio
+            if (mp_val < final_port_value):
+                mp_val = final_port_value
+                mp_maperiod = ret[0].p.maperiod
 
-def backtradeplot(df, name, maperiod):
-    cerebro = bt.Cerebro()
-    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
-    cerebro.addstrategy(TestStrategy, maperiod=maperiod)
-    feed = bt.feeds.PandasData(dataname=df)
-    cerebro.adddata(feed, name)
-    cerebro.broker.setcash(initial_portfolio)
-    cerebro.broker.setcommission(commission=0.003)
+        roi = (mp_val - initial_portfolio) * 100 / initial_portfolio
+        dfiter['roi'] = roi
+        dfiter['ma'] = mp_maperiod
+        dfiter['opt_strategy'] = st
+        print('[%s] Max ROI: %.2f%% with MA: %d' % (dfmap['name'], roi, mp_maperiod))
+
+def generate_report(dfmap, doplot=False):
+
+    df = dfmap['data']
+    name = dfmap['name']
+    strategy = dfmap['strategy']
+
+    cerebro = get_cerebro(df, name)
+
+    if strategy == 'MAStrategy':
+        cerebro.addstrategy(eval(strategy), maperiod=dfmap['ma'])
+    else:
+        cerebro.addstrategy(eval(strategy))
+
     cerebro.run()
+    if doplot:
+        cerebro.plot()
 
+'''
     # Pattern Recognition
     candle_names = ta.get_function_groups()['Pattern Recognition']
     for candle in candle_names:
@@ -136,16 +172,7 @@ def backtradeplot(df, name, maperiod):
                 recoganized_patterns += 1
         patterns = np.append(patterns, recoganized_patterns)
     df['pat'] = patterns.astype(int)
-
-    # Plotting
-    cerebro.plot()
-
-    ### plot with mplfinance
-    #index0 = mpf.make_addplot(abstract.BBANDS(df), panel = 0)
-    #index1 = mpf.make_addplot(abstract.MACDEXT(df), panel = 2, ylabel = 'MACD')
-    #index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
-    #index3 = mpf.make_addplot(abstract.STOCHRSI(df), panel = 4, ylabel = 'STOCHRSI')
-    #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10, 20), title=s_code, addplot = [index0, index1, index2, index3])
+    '''
 
 if __name__ == '__main__':
 
@@ -167,11 +194,14 @@ if __name__ == '__main__':
     ts.set_token(token)
     pro = ts.pro_api()
     #df = pro.daily(ts_code=s_code, start_date='20200101', end_date='20180718')
-
     #data = pro.namechange(ts_code=s_code, fields='name,start_date,end_date,change_reason')
     dfs = []
     for s_code in s_codes:
-        dfs.append({ 'name': s_code[1], 'data': ts.pro_bar(ts_code=s_code[0], adj='qfq', start_date=dt_start, end_date=dt_end)} )
+        dfs.append({
+            'data': ts.pro_bar(ts_code=s_code[0], adj='qfq', start_date=dt_start, end_date=dt_end),
+            'name': s_code[1],
+            'strategy': s_code[2]
+            })
 
     strats = []
     for dfmap in dfs:
@@ -182,24 +212,9 @@ if __name__ == '__main__':
         df.drop(columns=['ts_code', 'trade_date', 'pre_close', 'change', 'pct_chg', 'amount'], inplace=True)
         df.columns = ['open', 'high', 'low', 'close', 'volume']
         df.sort_index(inplace=True)
+
         dfmap['data'] = df
 
-        st = backtester(dfmap)
+        optimize_strategy(dfmap)
 
-        # Get optimized roi and maperiod
-        mp_val = -1
-        mp_maperiod = 0
-        for ret in st:
-            final_port_value = ret[0].portfolio
-            if (mp_val < final_port_value):
-                mp_val = final_port_value
-                mp_maperiod = ret[0].p.maperiod
-
-        roi = (mp_val - initial_portfolio) * 100 / initial_portfolio
-        dfmap['roi'] = roi
-        dfmap['ma'] = mp_maperiod
-        print('[%s] Max ROI: %.2f%% with MA: %d' % (dfmap['name'], roi, mp_maperiod))
-
-    # Plotting
-    for dfmap in dfs:
-        backtradeplot(dfmap['data'], dfmap['name'], dfmap['ma'])
+        generate_report(dfmap)
