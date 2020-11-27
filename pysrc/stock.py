@@ -8,6 +8,9 @@ import numpy as np
 from talib import abstract
 from backtrader import strategies
 
+class NilStrategy(bt.Strategy):
+    pass
+
 class TestStrategy(bt.Strategy):
     def stop(self):
         print("TestStrategy executed")
@@ -32,6 +35,7 @@ class MAStrategy(bt.Strategy):
         self.order = None
         self.buyprice = None
         self.buycomm = None
+        self.trade_dates = []
         self.sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.maperiod)
 
         bt.indicators.ExponentialMovingAverage(self.datas[0], period=self.params.maperiod)
@@ -52,10 +56,13 @@ class MAStrategy(bt.Strategy):
         if order.status in [order.Completed]:
             if order.isbuy():
                 self.log('BUY EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
+                ac = "🔺BUY"
             elif order.issell():
                 self.log('SELL EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
+                ac = "🔽SELL"
 
             self.bar_executed = len(self)
+            self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
 
         elif order.status in [order.Canceled, order.Margin, order.Rejected]:
             self.log('Order Canceled/Margin/Rejected')
@@ -121,7 +128,7 @@ def optimize_strategy(dfiter):
     if strategy == 'MAStrategy':
         cerebro.optstrategy(eval(strategy), maperiod=range(10, 31))
     else:
-        cerebro.addstrategy(TestStrategy)
+        cerebro.addstrategy(NilStrategy)
 
     st = cerebro.run(maxcpus=1, optreturn=False)
 
@@ -139,7 +146,14 @@ def optimize_strategy(dfiter):
         dfiter['roi'] = roi
         dfiter['ma'] = mp_maperiod
         dfiter['opt_strategy'] = st
-        print('[%s] Max ROI: %.2f%% with MA: %d' % (dfmap['name'], roi, mp_maperiod))
+
+        recent_order = st[0][0].trade_dates[-1]
+        if dt.datetime.strptime(recent_order['date'], '%Y%m%d') > dt.datetime.today() - dt.timedelta(7):
+            # 7天/一周内有交易
+            notifier = '[交易: %s, %s]' % (recent_order['action'], recent_order['date'])
+        else:
+            notifier = ''
+        print('%s[%s] Max ROI: %.2f%% with MA: %d' % (notifier, dfmap['name'], roi, mp_maperiod))
 
 def generate_report(dfmap, doplot=False):
 
@@ -217,4 +231,4 @@ if __name__ == '__main__':
 
         optimize_strategy(dfmap)
 
-        generate_report(dfmap)
+        generate_report(dfmap, doplot=False)
