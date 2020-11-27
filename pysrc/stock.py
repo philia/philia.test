@@ -108,30 +108,37 @@ def backtester(dfiter):
     feed = bt.feeds.PandasData(dataname=df)
     cerebro.adddata(feed, name)
 
-    cerebro.broker.setcash(100000.0)
+    cerebro.broker.setcash(initial_portfolio)
     cerebro.broker.setcommission(commission=0.003)
 
-    #print('[%s] Starting with: %.2f' % (name, cerebro.broker.getvalue()))
-    #cerebro.run(maxcpus=1)
-    #print('[%s] Final Value: %.2f' % (name, cerebro.broker.getvalue()))
-    strats = cerebro.run(maxcpus=1, optreturn=False)
+    return cerebro.run(maxcpus=1, optreturn=False)
 
-    ## Pattern Recognition
-    #candle_names = ta.get_function_groups()['Pattern Recognition']
-    #for candle in candle_names:
-    #    df[candle] = getattr(ta, candle)(df['open'], df['high'], df['low'], df['close'])
-    #
-    #patterns = np.array([])
-    #for index, row in df.iterrows():
-    #    recoganized_patterns = 0
-    #    for candle in candle_names:
-    #        if (row[candle] != 0):
-    #            recoganized_patterns += 1
-    #    patterns = np.append(patterns, recoganized_patterns)
-    #df['pat'] = patterns.astype(int)
+def backtradeplot(df, name, maperiod):
+    cerebro = bt.Cerebro()
+    cerebro.addsizer(bt.sizers.FixedSize, stake=1000)
+    cerebro.addstrategy(TestStrategy, maperiod=maperiod)
+    feed = bt.feeds.PandasData(dataname=df)
+    cerebro.adddata(feed, name)
+    cerebro.broker.setcash(initial_portfolio)
+    cerebro.broker.setcommission(commission=0.003)
+    cerebro.run()
+
+    # Pattern Recognition
+    candle_names = ta.get_function_groups()['Pattern Recognition']
+    for candle in candle_names:
+        df[candle] = getattr(ta, candle)(df['open'], df['high'], df['low'], df['close'])
+
+    patterns = np.array([])
+    for index, row in df.iterrows():
+        recoganized_patterns = 0
+        for candle in candle_names:
+            if (row[candle] != 0):
+                recoganized_patterns += 1
+        patterns = np.append(patterns, recoganized_patterns)
+    df['pat'] = patterns.astype(int)
 
     # Plotting
-    #cerebro.plot()
+    cerebro.plot()
 
     ### plot with mplfinance
     #index0 = mpf.make_addplot(abstract.BBANDS(df), panel = 0)
@@ -139,19 +146,22 @@ def backtester(dfiter):
     #index2 = mpf.make_addplot(abstract.RSI(df), panel = 3, ylabel = 'RSI')
     #index3 = mpf.make_addplot(abstract.STOCHRSI(df), panel = 4, ylabel = 'STOCHRSI')
     #mpf.plot(df, type='candle', volume=True, style='yahoo', mav=(5, 10, 20), title=s_code, addplot = [index0, index1, index2, index3])
-    return strats
 
 if __name__ == '__main__':
 
-    with open('token.local') as conf:
+    with open('config.local') as conf:
         token = conf.readline().strip()
+        global initial_portfolio
+        initial_portfolio = float (conf.readline().strip())
+        hist_range = int (conf.readline().strip())
+
     s_codes = []
     with open('scode.local') as conf:
         for line in conf:
             s_codes.append(line.strip().split(','))
 
     #dt_end = dt.datetime.today().strftime("%Y%m%d")
-    dt_start = (dt.datetime.today() - dt.timedelta(days=180)).strftime("%Y%m%d")
+    dt_start = (dt.datetime.today() - dt.timedelta(days=hist_range)).strftime("%Y%m%d")
     dt_end = dt.datetime.today().strftime("%Y%m%d")
 
     ts.set_token(token)
@@ -163,9 +173,9 @@ if __name__ == '__main__':
     for s_code in s_codes:
         dfs.append({ 'name': s_code[1], 'data': ts.pro_bar(ts_code=s_code[0], adj='qfq', start_date=dt_start, end_date=dt_end)} )
 
-    # transform for mplfinance OHLC format
     strats = []
     for dfmap in dfs:
+        # transform for mplfinance OHLC format
         df = dfmap['data']
         df.index = df.trade_date
         df = df.rename(index=pd.Timestamp)
@@ -174,15 +184,22 @@ if __name__ == '__main__':
         df.sort_index(inplace=True)
         dfmap['data'] = df
 
-        strats.append({'name': dfmap['name'], 'ret': backtester(dfmap)})
+        st = backtester(dfmap)
 
-    for st in strats:
-        name = st['name']
+        # Get optimized roi and maperiod
         mp_val = -1
         mp_maperiod = 0
-        for ret in st['ret']:
+        for ret in st:
             final_port_value = ret[0].portfolio
             if (mp_val < final_port_value):
                 mp_val = final_port_value
                 mp_maperiod = ret[0].p.maperiod
-        print('[%s] Max Portfolio Value: %.2f with MA: %d' % (name, mp_val, mp_maperiod))
+
+        roi = (mp_val - initial_portfolio) * 100 / initial_portfolio
+        dfmap['roi'] = roi
+        dfmap['ma'] = mp_maperiod
+        print('[%s] Max ROI: %.2f%% with MA: %d' % (dfmap['name'], roi, mp_maperiod))
+
+    # Plotting
+    for dfmap in dfs:
+        backtradeplot(dfmap['data'], dfmap['name'], dfmap['ma'])
