@@ -8,7 +8,6 @@
 # Global Config {{{
 set -o vi
 
-#export EDITOR='vim -u NONE'
 export EDITOR=vim
 export TERM=xterm-256color
 
