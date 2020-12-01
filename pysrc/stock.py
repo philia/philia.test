@@ -7,6 +7,7 @@ import numpy as np
 
 from talib import abstract
 from backtrader import strategies
+from operator import itemgetter
 
 class NilStrategy(bt.Strategy):
     pass
@@ -155,7 +156,8 @@ def optimize_strategy(dfiter):
             notifier = '[交易: %s, %s]' % (recent_order['action'], recent_order['date'])
         else:
             notifier = ''
-        print('%s[%s] Max ROI: %.2f%% with MA: %d' % (notifier, dfmap['name'], roi, mp_maperiod))
+
+        dfiter['report'] = '%s[%s] Max ROI: %.2f%% with MA: %d' % (notifier, dfmap['name'], roi, mp_maperiod)
 
 def generate_report(dfmap, doplot=False):
 
@@ -231,6 +233,10 @@ if __name__ == '__main__':
 
         dfmap['data'] = df
 
-        optimize_strategy(dfmap)
+        dfmap['output'] = optimize_strategy(dfmap)
 
-        generate_report(dfmap, doplot=False)
+        #generate_report(dfmap, doplot=False)
+
+    dfs_s = sorted(dfs, key = lambda x: x['roi'], reverse = True)
+
+    print("\n".join(list(map(itemgetter('report'), dfs_s))))
