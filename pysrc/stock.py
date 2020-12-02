@@ -47,6 +47,12 @@ class BaseStrategy(bt.Strategy):
             self.bar_executed = len(self)
             self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
 
+    def notify_trade(self, trade):
+        if not trade.isclosed:
+            return
+        self.log('[OPERATION PROFIT] GROSS: %.2f, NET: %.2f, PRICE: %.2f, VALUE: %.2f, SIZE: %.2f' % (trade.pnl, trade.pnlcomm, trade.price, trade.value, trade.size))
+        self.log('[PORTFOLIO] CASH: %.2f, VALUE: %.2f' % (self.broker.get_cash(), self.broker.get_value()))
+
 class MACDStrategy(BaseStrategy):
     params = (
         ('macd1', 12),
@@ -129,12 +135,6 @@ class MAStrategy(BaseStrategy):
 
         # Write down: no pending order
         self.order = None
-
-    def notify_trade(self, trade):
-        if not trade.isclosed:
-            return
-        self.log('[OPERATION PROFIT] GROSS: %.2f, NET: %.2f, PRICE: %.2f, VALUE: %.2f, SIZE: %.2f' % (trade.pnl, trade.pnlcomm, trade.price, trade.value, trade.size))
-        self.log('[PORTFOLIO] CASH: %.2f, VALUE: %.2f' % (self.broker.get_cash(), self.broker.get_value()))
 
     def next(self):
         # Simply log the closing price of the series from the reference
