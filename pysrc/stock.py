@@ -10,14 +10,44 @@ from backtrader import strategies
 from operator import itemgetter
 from itertools import chain 
 
-class NilStrategy(bt.Strategy):
-    pass
+class BaseStrategy(bt.Strategy):
+    params = (
+        ('printlog', False),
+    )
 
-class TestStrategy(bt.Strategy):
+    def log(self, txt, dt=None, doprint=False):
+        if self.params.printlog or doprint:
+            dt = dt or self.datas[0].datetime.date(0)
+            print('%s, %s' % (dt.isoformat(), txt))
+
+    def __init__(self):
+
+        self.trade_dates = []
+
+        bt.indicators.MACDHisto(self.datas[0])
+        rsi = bt.indicators.RSI(self.datas[0])
+        bt.indicators.StochasticSlow(self.datas[0])
+        bt.indicators.BBands(self.datas[0])
+        bt.indicators.WilliamsR(self.datas[0])
+
     def stop(self):
-        print("TestStrategy executed")
+        self.portfolio = self.broker.getvalue()
 
-class MACDStrategy(bt.Strategy):
+    def notify_order(self, order):
+        # Check if an order has been completed
+        # Attention: broker could reject order if not enough cash
+        if order.status in [order.Completed]:
+            if order.isbuy():
+                self.log('BUY EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
+                ac = "🔺BUY"
+            elif order.issell():
+                self.log('SELL EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
+                ac = "🔽SELL"
+
+            self.bar_executed = len(self)
+            self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
+
+class MACDStrategy(BaseStrategy):
     params = (
         ('macd1', 12),
         ('macd2', 26),
@@ -40,25 +70,10 @@ class MACDStrategy(bt.Strategy):
         # Control market trend
         self.sma = bt.indicators.SMA(self.datas[0], period=self.p.smaperiod)
         self.smadir = self.sma - self.sma(-self.p.dirperiod)
-        self.trade_dates = []
-
-        bt.indicators.MACDHisto(self.datas[0])
-        rsi = bt.indicators.RSI(self.datas[0])
-        bt.indicators.StochasticSlow(self.datas[0])
-        bt.indicators.BBands(self.datas[0])
-        bt.indicators.WilliamsR(self.datas[0])
+        super().__init__()
 
     def notify_order(self, order):
-        # Check if an order has been completed
-        # Attention: broker could reject order if not enough cash
-        if order.status in [order.Completed]:
-            if order.isbuy():
-                ac = "🔺BUY"
-            elif order.issell():
-                ac = "🔽SELL"
-
-            self.bar_executed = len(self)
-            self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
+        super().notify_order(order)
 
         if not order.alive():
             self.order = None # indicate no order is pending
@@ -84,20 +99,11 @@ class MACDStrategy(bt.Strategy):
                 # Update only if greater than
                 self.pstop = max(pstop, pclose - pdist)
 
-    def stop(self):
-        self.portfolio = self.broker.getvalue()
-
-class MAStrategy(bt.Strategy):
+class MAStrategy(BaseStrategy):
     params = (
         ('exitbars', 5),
         ('maperiod', 15),
-        ('printlog', False),
     )
-
-    def log(self, txt, dt=None, doprint=False):
-        if self.params.printlog or doprint:
-            dt = dt or self.datas[0].datetime.date(0)
-            print('%s, %s' % (dt.isoformat(), txt))
 
     def __init__(self):
         # Keep a reference to the "close" line in the data[0] dataseries
@@ -110,32 +116,16 @@ class MAStrategy(bt.Strategy):
         self.trade_dates = []
         self.sma = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.maperiod)
 
-        bt.indicators.MACDHisto(self.datas[0])
-        rsi = bt.indicators.RSI(self.datas[0])
-        bt.indicators.StochasticSlow(self.datas[0])
-        bt.indicators.BBands(self.datas[0])
-        bt.indicators.WilliamsR(self.datas[0])
+        super().__init__()
 
     def notify_order(self, order):
         if order.status in [order.Submitted, order.Accepted]:
             # Buy/Sell order submitted/accepted to/by broker - Nothing to do
             return
-
-        # Check if an order has been completed
-        # Attention: broker could reject order if not enough cash
-        if order.status in [order.Completed]:
-            if order.isbuy():
-                self.log('BUY EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
-                ac = "🔺BUY"
-            elif order.issell():
-                self.log('SELL EXECUTED, Price: %.2f, Cost: %.2f, Comm: %.2f' % (order.executed.price, order.executed.value, order.executed.comm))
-                ac = "🔽SELL"
-
-            self.bar_executed = len(self)
-            self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
-
         elif order.status in [order.Canceled, order.Margin, order.Rejected]:
             self.log('Order Canceled/Margin/Rejected')
+
+        super().notify_order(order)
 
         # Write down: no pending order
         self.order = None
@@ -170,10 +160,6 @@ class MAStrategy(bt.Strategy):
 
                 # Keep track of the created order to avoid a 2nd order
                 self.order = self.sell(price=self.dataclose[0])
-
-    def stop(self):
-        self.portfolio = self.broker.getvalue()
-        self.log('(MA Period %2d) Ending Value %.2f' % (self.params.maperiod, self.broker.getvalue()), doprint=False)
 
 def get_cerebro(df, name):
     # initialize backtrader
