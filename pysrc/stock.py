@@ -8,6 +8,7 @@ import numpy as np
 from talib import abstract
 from backtrader import strategies
 from operator import itemgetter
+from itertools import chain 
 
 class NilStrategy(bt.Strategy):
     pass
@@ -15,6 +16,76 @@ class NilStrategy(bt.Strategy):
 class TestStrategy(bt.Strategy):
     def stop(self):
         print("TestStrategy executed")
+
+class MACDStrategy(bt.Strategy):
+    params = (
+        ('macd1', 12),
+        ('macd2', 26),
+        ('macdsig', 9),
+        ('atrperiod', 14),  # ATR Peroid (standard)
+        ('atrdist', 3.0),   # ATR distance for stop price
+        ('smaperiod', 30),  # SMA Period (pretty standard)
+        ('dirperiod', 10),  # Lookback period to consider SMA trend direction
+    )
+
+    def __init__(self):
+        self.macd = bt.indicators.MACD(self.datas[0],
+                period_me1=self.p.macd1,
+                period_me2=self.p.macd2,
+                period_signal=self.p.macdsig)
+        # Cross of macd.macd and macd.signal
+        self.mcross = bt.indicators.CrossOver(self.macd.macd, self.macd.signal)
+        # To set the stop price
+        self.atr = bt.indicators.ATR(self.datas[0], period=self.p.atrperiod)
+        # Control market trend
+        self.sma = bt.indicators.SMA(self.datas[0], period=self.p.smaperiod)
+        self.smadir = self.sma - self.sma(-self.p.dirperiod)
+        self.trade_dates = []
+
+        bt.indicators.MACDHisto(self.datas[0])
+        rsi = bt.indicators.RSI(self.datas[0])
+        bt.indicators.StochasticSlow(self.datas[0])
+        bt.indicators.BBands(self.datas[0])
+        bt.indicators.WilliamsR(self.datas[0])
+
+    def notify_order(self, order):
+        # Check if an order has been completed
+        # Attention: broker could reject order if not enough cash
+        if order.status in [order.Completed]:
+            if order.isbuy():
+                ac = "🔺BUY"
+            elif order.issell():
+                ac = "🔽SELL"
+
+            self.bar_executed = len(self)
+            self.trade_dates.append({"action": ac, "date": bt.num2date(order.created.dt).strftime("%Y%m%d")})
+
+        if not order.alive():
+            self.order = None # indicate no order is pending
+
+    def start(self):
+        self.order = None # sentinel to avoid operations on pending order
+
+    def next(self):
+        if self.order:
+            return  # pending order execution
+        if not self.position:    # not in the market
+            if self.mcross[0] > 0.0 and self.smadir < 0.0:
+                self.order = self.buy()
+                pdist = self.atr[0] * self.p.atrdist
+                self.pstop = self.datas[0].close - pdist
+        else:   # in the market
+            pclose = self.datas[0].close
+            pstop = self.pstop
+            if pclose < pstop:
+                self.close()    # stop met - get out
+            else:
+                pdist = self.atr[0] * self.p.atrdist
+                # Update only if greater than
+                self.pstop = max(pstop, pclose - pdist)
+
+    def stop(self):
+        self.portfolio = self.broker.getvalue()
 
 class MAStrategy(bt.Strategy):
     params = (
@@ -41,11 +112,7 @@ class MAStrategy(bt.Strategy):
 
         bt.indicators.MACDHisto(self.datas[0])
         rsi = bt.indicators.RSI(self.datas[0])
-        #bt.indicators.SmoothedMovingAverage(rsi, period=self.params.maperiod)
-        #bt.indicators.ExponentialMovingAverage(self.datas[0], period=self.params.maperiod)
-        #bt.indicators.WeightedMovingAverage(self.datas[0], period=self.params.maperiod)
         bt.indicators.StochasticSlow(self.datas[0])
-        #bt.indicators.ATR(self.datas[0], plot=False)
         bt.indicators.BBands(self.datas[0])
         bt.indicators.WilliamsR(self.datas[0])
 
@@ -124,53 +191,58 @@ def get_cerebro(df, name):
 def optimize_strategy(dfiter):
     df = dfiter['data']
     name = dfiter['name']
-    strategy = dfiter['strategy']   # This is the strategy we want to optimize against
+    #strategy = dfiter['strategy']   # This is the strategy we want to optimize against
 
     cerebro = get_cerebro(df, name)
+    cerebro.optstrategy(MAStrategy, maperiod=range(10, 31))
+    ma_opted_st = cerebro.run(maxcpus=1, optreturn=False)
 
-    if strategy == 'MAStrategy':
-        cerebro.optstrategy(eval(strategy), maperiod=range(10, 31))
+    cerebro = get_cerebro(df, name)
+    cerebro.optstrategy(MACDStrategy, macd1=range(7,12), macd2=range(26,31))
+    macd_opted_st = cerebro.run(maxcpus=1, optreturn=False)
+
+
+    max_portfolio = -1
+    opt_st = None
+    for ret in list(chain.from_iterable(ma_opted_st + macd_opted_st)):
+        final_port_value = ret.portfolio
+        if max_portfolio < final_port_value:
+            max_portfolio = final_port_value
+            opt_st = ret
+
+    roi = (max_portfolio - initial_portfolio) * 100 / initial_portfolio
+    dfiter['roi'] = roi
+    dfiter['opt_strategy'] = opt_st
+    opt_st_name = type(opt_st).__name__
+    dfiter['opt_strategy_name'] = opt_st_name
+
+    if opt_st_name == 'MAStrategy':
+        dfiter['ma'] = opt_st.p.maperiod
+    elif opt_st_name == 'MACDStrategy':
+        dfiter['macd1'] = opt_st.p.macd1
+        dfiter['macd2'] = opt_st.p.macd2
+
+    recent_order = opt_st.trade_dates[-1]
+    if dt.datetime.strptime(recent_order['date'], '%Y%m%d') > dt.datetime.today() - dt.timedelta(7):
+        # 7天/一周内有交易
+        notifier = '[交易: %s, %s]' % (recent_order['action'], recent_order['date'])
     else:
-        cerebro.addstrategy(NilStrategy)
+        notifier = ''
 
-    st = cerebro.run(maxcpus=1, optreturn=False)
-
-    if strategy == 'MAStrategy':
-        # Get optimized roi and maperiod
-        mp_val = -1
-        mp_maperiod = 0
-        for ret in st:
-            final_port_value = ret[0].portfolio
-            if (mp_val < final_port_value):
-                mp_val = final_port_value
-                mp_maperiod = ret[0].p.maperiod
-
-        roi = (mp_val - initial_portfolio) * 100 / initial_portfolio
-        dfiter['roi'] = roi
-        dfiter['ma'] = mp_maperiod
-        dfiter['opt_strategy'] = st
-
-        recent_order = st[0][0].trade_dates[-1]
-        if dt.datetime.strptime(recent_order['date'], '%Y%m%d') > dt.datetime.today() - dt.timedelta(7):
-            # 7天/一周内有交易
-            notifier = '[交易: %s, %s]' % (recent_order['action'], recent_order['date'])
-        else:
-            notifier = ''
-
-        dfiter['report'] = '%s[%s] Max ROI: %.2f%% with MA: %d' % (notifier, dfmap['name'], roi, mp_maperiod)
+    dfiter['report'] = '%s[%s] Max ROI: %.2f%%' % (notifier, dfmap['name'], roi)
 
 def generate_report(dfmap, doplot=False):
 
     df = dfmap['data']
     name = dfmap['name']
-    strategy = dfmap['strategy']
+    strategy = dfmap['opt_strategy_name']
 
     cerebro = get_cerebro(df, name)
 
     if strategy == 'MAStrategy':
         cerebro.addstrategy(eval(strategy), maperiod=dfmap['ma'])
     else:
-        cerebro.addstrategy(eval(strategy))
+        cerebro.addstrategy(eval(strategy), macd1=dfmap['macd1'], macd2=dfmap['macd2'])
 
     cerebro.run()
     if doplot:
@@ -205,9 +277,9 @@ if __name__ == '__main__':
         for line in conf:
             s_codes.append(line.strip().split(','))
 
-    #dt_end = dt.datetime.today().strftime("%Y%m%d")
     dt_start = (dt.datetime.today() - dt.timedelta(days=hist_range)).strftime("%Y%m%d")
     dt_end = dt.datetime.today().strftime("%Y%m%d")
+    #dt_end = (dt.datetime.today() - dt.timedelta(days=1)).strftime("%Y%m%d")
 
     ts.set_token(token)
     pro = ts.pro_api()
@@ -218,7 +290,6 @@ if __name__ == '__main__':
         dfs.append({
             'data': ts.pro_bar(ts_code=s_code[0], adj='qfq', start_date=dt_start, end_date=dt_end),
             'name': s_code[1],
-            'strategy': s_code[2]
             })
 
     strats = []
@@ -233,7 +304,7 @@ if __name__ == '__main__':
 
         dfmap['data'] = df
 
-        dfmap['output'] = optimize_strategy(dfmap)
+        optimize_strategy(dfmap)
 
         #generate_report(dfmap, doplot=False)
 
